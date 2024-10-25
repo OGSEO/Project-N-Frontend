@@ -1,0 +1,48 @@
+h2 {
+    color: black;
+    font-size: 2rem;
+    margin-bottom: 32px;
+}
+
+.register-container {
+    align-self: center;
+    background: #FFF;
+    padding: 20px;
+    width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.register-link {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
+
+.btn {
+    padding: 15px 0;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    background: red;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    background: darkred;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: lightcoral;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}

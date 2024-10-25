@@ -1,0 +1,27 @@
+.error-feedback {
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #ea868f;
+}
+
+input {
+    height: 55px;
+    width: 100%;
+    padding: 0 15px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+input:focus {
+    outline: none;
+    border-color: pink;
+}
+
+::placeholder {
+    color: #777;
+    font-size: 1.063rem;
+}

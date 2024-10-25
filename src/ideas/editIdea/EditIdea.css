@@ -1,0 +1,14 @@
+.edit-idea-container  {
+    background-color: bisque;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.edit-idea-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}

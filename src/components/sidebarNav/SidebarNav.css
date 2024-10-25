@@ -1,0 +1,6 @@
+.sidebar-nav {
+    background-color: #cccccc;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

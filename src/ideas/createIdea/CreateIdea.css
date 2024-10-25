@@ -1,0 +1,21 @@
+.create-idea-container  {
+    background-color: bisque;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.create-idea-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}
+
+.buttons-box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+
+}
