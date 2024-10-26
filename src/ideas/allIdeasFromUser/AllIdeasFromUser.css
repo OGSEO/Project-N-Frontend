@@ -1,0 +1,21 @@
+.all-ideas {
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    /*gap: 16px;*/
+    /*padding: 16px;*/
+    border-radius: 8px;
+}
+
+.all-ideas ul {
+    padding: 0 8px;
+    background-color: orange;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.all-ideas li {
+    background-color: #ea868f;
+}

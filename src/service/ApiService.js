@@ -89,6 +89,12 @@ export default class ApiService {
         return response.data;
     }
 
+    static async getAllIdeasFromUser() {
+        const response = await axios.get(
+            `${this.BASE_URL}/idea/get-all-by-user`)
+        return response.data;
+    }
+
     // static async getAllIdeasFromUser(userId) {
     //     const response = await axios.get(
     //         `${this.BASE_URL}/idea/get-all-from-user`, userId)
@@ -121,21 +127,20 @@ export default class ApiService {
 
     /** COMMENT API */
 
-    // static async createComment(formData) {
-    //     const response = await axios.post(
-    //         `${this.BASE_URL}/comment/create`, formData, {
-    //             headers: this.getHeader()
-    //         })
-    //     return response.data;
-    // }
+    static async createComment(formData, ideaId) {
+        const response = await axios.post(
+            `${this.BASE_URL}/comment/create/${ideaId}`, formData, {
+                headers: this.getHeader()
+            })
+        return response.data;
+    }
     //
-    // static async getAllComments(formData) {
-    //     console.log(formData);
-    //     const response = await axios.get(
-    //         `${this.BASE_URL}/comment/get-all`, formData)
-    //     return response.data;
-    // }
-    //
+    static async getAllComments(ideaId) {
+        const response = await axios.get(
+            `${this.BASE_URL}/comment/get-all-by-idea/${ideaId}`)
+        return response.data;
+    }
+
     // static async getCommentById(commentId) {
     //     const response = await axios.get(
     //         `${this.BASE_URL}/comment/get-comment-by-id/${commentId}`)

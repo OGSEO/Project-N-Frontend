@@ -2,6 +2,8 @@ import './IdeaDetails.css';
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import ApiService from "../../service/ApiService.js";
+import CreateComment from "../../comments/createComment/CreateComment.jsx";
+import CommentList from "../../comments/commentList/CommentList.jsx";
 
 export default function IdeaDetails() {
 
@@ -23,7 +25,7 @@ export default function IdeaDetails() {
                 console.error(e)
             }
         }
-        fetchCurrentIdea();
+        void fetchCurrentIdea();
     }, [ideaId]);
 
     async function deleteIdeaHandler() {
@@ -46,6 +48,12 @@ export default function IdeaDetails() {
             <h3>{currentIdea.description}</h3>
             <Link to="edit" >Edit Idea</Link>
             <button onClick={deleteIdeaHandler}>Delete Idea</button>
+            <div>
+                <CreateComment />
+            </div>
+            <div>
+                <CommentList />
+            </div>
         </>
     )
 }

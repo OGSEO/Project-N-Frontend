@@ -1,15 +1,15 @@
-import './AllIdeas.css'
+import './AllIdeasFromUser.css'
 import {useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
 import {Link} from "react-router-dom";
 
-export default function AllIdeas() {
+export default function AllIdeasFromUser() {
     const [ideas, setIdeas] = useState([]);
 
     useEffect(() => {
         async function fetchIdeas() {
             try {
-                const response = await ApiService.getAllIdeas();
+                const response = await ApiService.getAllIdeasFromUser();
                 const ideaList = response.ideaList;
                 console.log(response);
                 setIdeas(ideaList);

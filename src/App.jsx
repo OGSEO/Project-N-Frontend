@@ -13,6 +13,7 @@ import UserLayout from "./layouts/userLayout/UserLayout.jsx";
 import ProfilePage from "./pages/profilePage/ProfilePage.jsx";
 import AddressPage from "./pages/addressPage/AddressPage.jsx";
 import CreatePoliticalParty from "./politicalParties/createPoliticalParty/CreatePoliticalParty.jsx";
+import AllIdeasFromUser from "./ideas/allIdeasFromUser/AllIdeasFromUser.jsx";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                     <Route path="add-address" element={<AddressPage />} />
                     <Route path="edit-address" element={<AddressPage />} />
                     <Route path="new-political-party" element={<CreatePoliticalParty />} />
+                    <Route path="my-ideas" element={<AllIdeasFromUser />} />
                 </Route>
 
                 <Route path="ideas" element={<IdeasLayout />} >

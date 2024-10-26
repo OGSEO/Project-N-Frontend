@@ -18,6 +18,7 @@ export default function SidebarNav() {
             <h2>Sidebar Nav</h2>
             <Link to="/user">Mijn Account</Link>
             <Link to="/ideas">Alle Ideeen</Link>
+            <Link to="/user/my-ideas">Mijn ideeen</Link>
             <Link to="/ideas/new-idea">Ik heb een idee</Link>
             <Link to="/user/new-political-party">Aanmelden Politieke Partij</Link>
             <button onClick={logouthandler}>Uitloggen</button>
