@@ -4,7 +4,6 @@ import PoliticalPartyList from "../../politicalParties/politicalPartyList/Politi
 export default function SidebarRight() {
     return (
         <div className="sidebar-right-container">
-            <h2>Sidebar Right</h2>
             <PoliticalPartyList />
         </div>
     )

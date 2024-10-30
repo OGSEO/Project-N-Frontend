@@ -7,19 +7,21 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 
 export default function LikeBox({idea, setLiked, liked}) {
     const [likedIdea, setLikedIdea] = useState(false);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
     console.log(user)
 
+    console.log(liked);
+
     useEffect(() => {
         let result;
-        if(idea.userLikes.length > 0) {
-            const arr = idea.userLikes
-            console.log(arr.some(i=> i.id === user.id));
+        if(liked.length > 0) {
+            console.log(liked);
+            console.log(liked.some(i=> i.toString() === user.username));
 
-            console.log(arr.length);
-            result = arr.some(i=> i.id === user.id);
+            console.log(liked.length);
+            result = (liked.some(i=> i.toString() === user.username));
 
             console.log(result)
             console.log(idea)
@@ -64,26 +66,30 @@ export default function LikeBox({idea, setLiked, liked}) {
         }
     }
 
-    // async function unLikeHandler() {
-    //     const ideaId = idea.id;
-    //
-    //     try {
-    //         const response = await ApiService.createUnLike(ideaId)
-    //         console.log(response);
-    //         if (response.statusCode === 200) {
-    //
-    //             setLikedIdea(false);
-    //             navigate('/user/feed');
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    async function unLikeHandler() {
+        const ideaId = idea.id;
+
+        try {
+            const response = await ApiService.createUnLike(ideaId)
+            console.log(response);
+            if (response.statusCode === 200) {
+                if(response.statusMessage === 'Idea unLiked Successfully')
+                setLikedIdea(false);
+                setLiked(response.idea.userLikes)
+                // navigate('/user/feed');
+            } else if (response.statusMessage === 'Idea already unLiked') {
+                setLikedIdea(false)
+                setLiked(response.idea.userLikes)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <>
-            {liked.length > 0 ? (
-                <IdeaItemActionButton label="Interessant" icon={<BsSuitHeartFill/>} clickEvent={likeHandler} className="liked"/>
+            {liked.length > 0 && likedIdea ? (
+                <IdeaItemActionButton label="Interessant" icon={<BsSuitHeartFill/>} clickEvent={unLikeHandler} className="liked"/>
             ) : (
                 <IdeaItemActionButton label="Interessant" icon={<BsSuitHeart/>} clickEvent={likeHandler}/>
             )}

@@ -26,17 +26,22 @@ export default function PoliticalPartyList() {
     return (
         <>
             <h1>Politieke Partijen</h1>
-            <ul>
-                {politicalParties.map((politicalParty) => (
-                    <Link to={`${politicalParty.id}`} key={politicalParty.id}>
-                        <li>
-                            <h1>{politicalParty.name}</h1>
-                            <h3>partij van: {politicalParty.user.name}</h3>
-                            <h3>{politicalParty.description}</h3>
-                        </li>
-                    </Link>
-                ))}
-            </ul>
+            {politicalParties.length === 0 ? (
+                <p>Er zijn nog geen politieke partijen aangemeld</p>
+            ) : (
+                <ul>
+                    {politicalParties.map((politicalParty) => (
+                        <Link to={`${politicalParty.id}`} key={politicalParty.id}>
+                            <li>
+                                <h1>{politicalParty.name}</h1>
+                                <h3>partij van: {politicalParty.user.name}</h3>
+                                <h3>{politicalParty.description}</h3>
+                            </li>
+                        </Link>
+                    ))}
+                </ul>
+            )}
+
         </>
     )
 }

@@ -1,0 +1,18 @@
+.navbar-link-box {
+    text-align: center;
+    padding: 8px 16px;
+    background-color: transparent;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-size: 18px;
+    border-radius: 4px;
+    margin: 0 16px;
+}
+
+.navbar-link {
+    text-decoration: none;
+}
+
+.navbar-link-box:hover {
+    background-color: #e8e8e8;
+}

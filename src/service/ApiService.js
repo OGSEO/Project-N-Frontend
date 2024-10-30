@@ -184,16 +184,15 @@ export default class ApiService {
         const token = localStorage.getItem("JWT_TOKEN")
         return !!token
     }
-    //
-    // static isPolitician() {
-    //     const role = localStorage.getItem("ROLE")
-    //     return role === 'POLITICIAN'
-    // }
+
+    static isPolitician() {
+        const role = localStorage.getItem("USER_ROLE")
+        return role === 'POLITICIAN'
+    }
 
     /** ACTION */
 
     static async createLike(ideaId) {
-        console.log(ideaId);
         const response = await axios.post(
             `${this.BASE_URL}/idea/like-idea/${ideaId}`, {},{
                 headers: this.getHeader()

@@ -30,7 +30,9 @@ function AuthContextProvider({children}) {
 
     function login( data ) {
         // zet de token in de Local Storage
+        console.log(data);
         localStorage.setItem("JWT_TOKEN", data.token );
+        localStorage.setItem("USER_ROLE", data.role);
         // decode de token zodat we de ID van de gebruiker hebben en data kunnen ophalen voor de context
         // const decoded = jwtDecode( data.token );
 
