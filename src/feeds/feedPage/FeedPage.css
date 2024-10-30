@@ -1,0 +1,59 @@
+.feed-page-container {
+    width: 576px;
+}
+
+
+.feed-page-container-no-content {
+    width:552px;
+    height:500px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #E8E8E8;
+}
+
+.feed-page-container-no-content button {
+    font-size: 24px;
+    padding: 16px;
+    background-color: blue;
+    color: #fff;
+    border-radius: 16px;
+    border: 1px solid transparent;
+}
+
+.feed-page-container-no-content button:hover {
+    color: blue;
+    background-color: #fff;
+    border: 1px solid blue;
+}
+
+/*.feed-container {*/
+/*    background-color: #fff;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    !*gap: 16px;*!*/
+/*    !*padding: 16px;*!*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*.feed-container ul {*/
+/*    padding: 0;*/
+/*    background-color: orange;*/
+/*    list-style: none;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 16px;*/
+/*}*/
+
+/*.feed-container li {*/
+/*    background-color: #ea868f;*/
+/*}*/
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

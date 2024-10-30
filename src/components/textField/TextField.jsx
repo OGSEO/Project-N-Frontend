@@ -9,7 +9,7 @@ export const TextField = forwardRef(({
                                          ...other
                                      }, ref) => {
     return (
-        <div className="form__control">
+        <div className="form-input">
             <input
                 type={type}
                 className={`form-control ${className}`}

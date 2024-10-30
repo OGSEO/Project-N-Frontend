@@ -3,6 +3,7 @@ import {useState} from "react";
 import {useForm} from "react-hook-form";
 import ApiService from "../../service/ApiService.js";
 import {TextField} from "../../components/textField/TextField.jsx";
+import './CreatePoliticalParty.css'
 
 export default function CreatePoliticalParty() {
     const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +25,7 @@ export default function CreatePoliticalParty() {
             const response = await ApiService.createPoliticalParty(data)
             console.log(response);
             if (response.statusCode === 200) {
-                navigate('/ideas');
+                navigate('/user/feed');
             }
         } catch (error) {
             console.error("Error submitting idea", error);
@@ -35,31 +36,33 @@ export default function CreatePoliticalParty() {
 
 
     return (
-        <div className='create-idea-container'>
+        <div className='create-party-container'>
             <h1>Aanmelden Politieke Partij</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <TextField
-                        label="Naam"
-                        error={errors.name}
-                        {...register('name', {
-                            required: "This field is required."
-                        })}
-                    />
-                    <TextField
-                        label="Beschrijving"
-                        error={errors.description}
-                        {...register('description', {
-                            required: "This field is required."
-                        })}
-                    />
-                </div>
+            <div className="create-party-form">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <TextField
+                            label="Naam"
+                            error={errors.name}
+                            {...register('name', {
+                                required: "This field is required."
+                            })}
+                        />
+                        <TextField
+                            label="Beschrijving"
+                            error={errors.description}
+                            {...register('description', {
+                                required: "This field is required."
+                            })}
+                        />
+                    </div>
 
-                <div className='buttons-box'>
-                    <Link to="..">Cancel</Link>
-                    <button>{isLoading ? "Submitting..." : "Aanmelden"}</button>
-                </div>
-            </form>
+                    <div className='buttons-box'>
+                        <Link to="..">Cancel</Link>
+                        <button>{isLoading ? "Submitting..." : "Aanmelden"}</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 

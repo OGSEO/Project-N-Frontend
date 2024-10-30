@@ -89,9 +89,9 @@ export default class ApiService {
         return response.data;
     }
 
-    static async getAllIdeasFromUser() {
+    static async getAllIdeasFromUser(userId) {
         const response = await axios.get(
-            `${this.BASE_URL}/idea/get-all-by-user`)
+            `${this.BASE_URL}/idea/get-all-by-user/${userId}`)
         return response.data;
     }
 
@@ -103,7 +103,8 @@ export default class ApiService {
 
     static async getIdeaById(ideaId) {
         const response = await axios.get(
-            `${this.BASE_URL}/idea/get-idea-by-id/${ideaId}`)
+            `${this.BASE_URL}/idea/get-idea-by-id`, ideaId, {
+                headers: this.getHeader()});
         return response.data;
     }
 
@@ -175,15 +176,14 @@ export default class ApiService {
 
     /** AUTH CHECKER */
 
-    static logout() {
-        localStorage.removeItem("JWT_TOKEN")
-        localStorage.removeItem("ROLE")
-    }
-
-    // static isAutheticated() {
-    //     const token = localStorage.getItem("JWT_TOKEN")
-    //     return !!token
+    // static logout() {
+    //     localStorage.removeItem("JWT_TOKEN")
     // }
+
+    static isAutheticated() {
+        const token = localStorage.getItem("JWT_TOKEN")
+        return !!token
+    }
     //
     // static isPolitician() {
     //     const role = localStorage.getItem("ROLE")
@@ -192,20 +192,21 @@ export default class ApiService {
 
     /** ACTION */
 
-    // static async createLike(data) {
-    //     const response = await axios.post(
-    //         `${this.BASE_URL}/idea/like-idea`, data, {
-    //             headers: this.getHeader()
-    //         })
-    //     return response.data;
-    // }
-    //
-    // static async createUnLike(data) {
-    //     const response = await axios.post(
-    //         `${this.BASE_URL}/idea/unlike-idea`, data, {
-    //             headers: this.getHeader()
-    //         })
-    //     return response.data;
-    // }
+    static async createLike(ideaId) {
+        console.log(ideaId);
+        const response = await axios.post(
+            `${this.BASE_URL}/idea/like-idea/${ideaId}`, {},{
+                headers: this.getHeader()
+            })
+        return response.data;
+    }
+
+    static async createUnLike(ideaId) {
+        const response = await axios.post(
+            `${this.BASE_URL}/idea/unlike-idea/${ideaId}`, {}, {
+                headers: this.getHeader()
+            })
+        return response.data;
+    }
 
 }

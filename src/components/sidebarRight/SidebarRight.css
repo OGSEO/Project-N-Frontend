@@ -1,3 +1,10 @@
-.sidebar-right {
-    background-color: #cccccc;
+.sidebar-right-container {
+    background-color: #fff;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 8px;
+    padding: 8px 0;
+    border: 1px solid #E8E8E8;
 }

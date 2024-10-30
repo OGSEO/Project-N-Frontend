@@ -79,7 +79,7 @@ export default function EditIdea() {
                 </div>
                 <div className='buttons-box'>
 
-                    <Link to=".." relative="path">Cancel</Link>
+                    <Link to="../.." relative="path">Cancel</Link>
                     <button>{isLoading ? "Submitting..." : "Edit Idea"}</button>
                 </div>
             </form>

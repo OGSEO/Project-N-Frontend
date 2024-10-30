@@ -6,14 +6,19 @@
     color: #ea868f;
 }
 
+.form-input {
+    width: 100%;
+}
+
 input {
     height: 55px;
-    width: 100%;
-    padding: 0 15px;
+    width: calc(100% - 16px);
+    /*padding: 0 15px;*/
     border: 1px solid #cccccc;
     border-radius: 6px;
     font-size: 1rem;
     margin-bottom: 15px;
+    padding-left: 16px;
 }
 
 input:focus {

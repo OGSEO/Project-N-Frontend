@@ -1,0 +1,26 @@
+.profile-page-container {
+    width: 876px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #E8E8E8;
+}
+
+
+
+.profile-info {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-username {
+    font-size: 32px;
+}
+
+.profile-title {
+    font-size: 26px;
+    margin-top:16px;
+}

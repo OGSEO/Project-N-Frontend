@@ -1,0 +1,26 @@
+.button {
+    margin: 6px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 6px;
+    letter-spacing: 0.4px;
+}
+
+.primaryBtn {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.cancelBtn {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.primaryBtn:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+}

@@ -7,7 +7,7 @@ import ApiService from "../../service/ApiService.js";
 
 export default function CreateComment() {
     const [isLoading, setIsLoading] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     // const auth = useAuth();
     const {ideaId} = useParams();
     const {register, handleSubmit} = useForm({
@@ -41,7 +41,7 @@ export default function CreateComment() {
             // console.log(newData);
             const response = await ApiService.createComment(data, ideaId)
             console.log(response);
-            // navigate("/ideas");
+            navigate("/user/feed");
         } catch (error) {
             console.error("Error submitting comment", error.response.data);
         } finally {

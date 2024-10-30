@@ -1,0 +1,5 @@
+.feed-main-page {
+    display: flex;
+    justify-content: center;
+    gap:24px;
+}

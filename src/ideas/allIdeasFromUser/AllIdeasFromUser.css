@@ -1,10 +1,36 @@
 .all-ideas {
-    background-color: bisque;
+    width:876px;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
-    /*gap: 16px;*/
-    /*padding: 16px;*/
+    gap: 16px;
+}
+
+.all-ideas-no-content {
+    width:876px;
+    height:500px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #E8E8E8;
+}
+
+.all-ideas-no-content button {
+    font-size: 24px;
+    padding: 16px;
+    background-color: blue;
+    color: #fff;
+    border-radius: 16px;
+    border: 1px solid transparent;
+}
+
+.all-ideas-no-content button:hover {
+    color: blue;
+    background-color: #fff;
+    border: 1px solid blue;
 }
 
 .all-ideas ul {

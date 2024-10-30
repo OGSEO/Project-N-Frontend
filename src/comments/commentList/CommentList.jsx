@@ -1,41 +1,46 @@
 import './CommentList.css';
 import {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
 import ApiService from "../../service/ApiService.js";
+import CommentItem from "../commentItem/CommentItem.jsx";
 
-export default function CommentList() {
+export default function CommentList({idea}) {
     const [commentList, setCommentList] = useState([]);
-    const {ideaId} = useParams();
+    const [ideaId, setIdeaId] = useState(0);
+
+    console.log(idea);
 
     useEffect(() => {
+
+        setIdeaId(idea.id)
+
         async function fetchComments() {
             try {
-            const response = await ApiService.getAllComments(ideaId);
-            console.log(response);
-            const newCommentList = response.commentList;
-            setCommentList(newCommentList);
-        } catch (e) {
-            console.error(e)
+                const response = await ApiService.getAllComments(ideaId);
+                console.log(response);
+                const newCommentList = response.commentList;
+                setCommentList(newCommentList);
+                console.log(newCommentList)
+            } catch (e) {
+                console.error(e)
+            }
         }
-    }
+
         void fetchComments();
 
-    }, [ideaId]);
+    }, [idea.id, ideaId]);
 
     return (
-        <div className="all-comments">
-            <h2>All Comments</h2>
-            <ul>
-                {commentList.map((comment) => (
-                    <Link to={`${comment.id}`} key={comment.id}>
-                        <li>
-                            <h1>{comment.title}</h1>
-                            <h3>comment van: {comment.user.name}</h3>
-                            <h3>{comment.content}</h3>
-                        </li>
-                    </Link>
-                ))}
-            </ul>
-        </div>
+        <>
+            {commentList.length > 0 ? (
+                <div className="all-comments">
+                    <ul>
+                        {commentList.map((comment) => (
+                            <CommentItem key={comment.id} comment={comment}/>
+                        ))}
+                    </ul>
+                </div>
+            ) : null
+            }
+        </>
     )
 }

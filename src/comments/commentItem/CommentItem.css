@@ -1,0 +1,17 @@
+.comment-item {
+    background-color: #e8e8e8;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.comment-item-name {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.comment-item-content {
+    font-size: 20px;
+    text-align: left;
+}

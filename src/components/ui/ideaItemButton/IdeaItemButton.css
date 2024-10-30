@@ -1,0 +1,17 @@
+.idea-item-button {
+    padding: 8px 32px;
+    border-radius: 8px;
+    background-color: blue;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: red;
+}
+
+.idea-item-button span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}

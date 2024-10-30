@@ -1,0 +1,19 @@
+.navbar-button-box {
+    background-color: #fff;
+    padding: 4px 16px;
+}
+
+.navbar-button-box button {
+    background-color: #fff;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.navbar-button-box button:hover {
+    background-color: #e8e8e8;
+}

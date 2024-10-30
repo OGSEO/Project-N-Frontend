@@ -13,11 +13,14 @@ export default function IdeaDetails() {
     })
     const { ideaId } = useParams();
     const navigate = useNavigate();
+    console.log(ideaId);
 
     useEffect(() => {
         async function fetchCurrentIdea() {
             try {
-                const response = await ApiService.getIdeaById(ideaId)
+                const response = await ApiService.getIdeaById({params: {
+                    ideaId
+                    }})
                 // const idea = response.idea;
                 console.log(response);
                 setCurrentIdea(response.idea);
@@ -32,7 +35,7 @@ export default function IdeaDetails() {
         const response = await ApiService.deleteIdea(currentIdea.id);
         console.log(response);
         if(response.statusCode === 200) {
-            navigate('/ideas');
+            navigate('/user/my-ideas');
         }
 
     }
@@ -48,12 +51,12 @@ export default function IdeaDetails() {
             <h3>{currentIdea.description}</h3>
             <Link to="edit" >Edit Idea</Link>
             <button onClick={deleteIdeaHandler}>Delete Idea</button>
-            <div>
-                <CreateComment />
-            </div>
-            <div>
-                <CommentList />
-            </div>
+            {/*<div>*/}
+            {/*    <CreateComment />*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <CommentList />*/}
+            {/*</div>*/}
         </>
     )
 }

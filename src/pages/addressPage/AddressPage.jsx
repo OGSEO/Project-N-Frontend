@@ -70,7 +70,7 @@ export default function AddressPage() {
     }
 
     return (
-        <div className='address-page'>
+        <div className='address-page-container'>
             <h2>{location.pathname === '/edit-address' ? 'Edit Address' : 'Add Address'}</h2>
             {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit(onSubmit)}>
