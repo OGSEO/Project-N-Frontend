@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
-import {Link} from "react-router-dom";
+import PoliticalPartyItem from "../politicalPartyItem/PoliticalPartyItem.jsx";
 
 export default function PoliticalPartyList() {
     const [politicalParties, setPoliticalParties] = useState([]);
@@ -28,20 +28,12 @@ export default function PoliticalPartyList() {
             <h1>Politieke Partijen</h1>
             {politicalParties.length === 0 ? (
                 <p>Er zijn nog geen politieke partijen aangemeld</p>
-            ) : (
-                <ul>
+            ) : (<>
                     {politicalParties.map((politicalParty) => (
-                        <Link to={`${politicalParty.id}`} key={politicalParty.id}>
-                            <li>
-                                <h1>{politicalParty.name}</h1>
-                                <h3>partij van: {politicalParty.user.name}</h3>
-                                <h3>{politicalParty.description}</h3>
-                            </li>
-                        </Link>
+                            <PoliticalPartyItem politicalParty={politicalParty} key={politicalParty.id} />
                     ))}
-                </ul>
+                </>
             )}
-
         </>
     )
 }

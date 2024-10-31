@@ -2,8 +2,9 @@
     width: 100%;
     margin-top: 4px;
     margin-bottom: 15px;
-    font-size: 16px;
-    color: #ea868f;
+    font-size: 18px;
+    color: var(--error-msg);
+    padding-left: 16px;
 }
 
 .form-input {
@@ -23,7 +24,7 @@ input {
 
 input:focus {
     outline: none;
-    border-color: pink;
+    border-color: var(--primary-color);
 }
 
 ::placeholder {

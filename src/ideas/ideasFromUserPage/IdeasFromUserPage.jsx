@@ -1,14 +1,13 @@
-import './AllIdeasFromUser.css'
+import './IdeasFromUserPage.css'
 import {useContext, useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
 import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import IdeaItem from "../ideaItem/IdeaItem.jsx";
 
-export default function AllIdeasFromUser() {
+export default function IdeasFromUserPage() {
     const [ideas, setIdeas] = useState([]);
     const {user} = useContext(AuthContext);
-    console.log(user);
 
     useEffect(() => {
         async function fetchIdeas() {
@@ -25,19 +24,20 @@ export default function AllIdeasFromUser() {
         void fetchIdeas();
     }, [user.id]);
 
-
-    console.log(ideas);
+    if (!ideas) {
+        return <div className="feed-page-container"><span className="load-message">Ideeen aan het laden...</span></div>
+    }
 
     return (
         <>
             {ideas.length > 0 ? (
-                <div className="all-ideas">
-                        {ideas.map((idea) => (
-                                <IdeaItem key={idea.id} idea={idea} />
-                        ))}
+                <div className="all-ideas-container">
+                    {ideas.map((idea) => (
+                        <IdeaItem key={idea.id} idea={idea}/>
+                    ))}
                 </div>
             ) : (
-                <div className="all-ideas-no-content">
+                <div className="all-ideas-container-no-content">
                     <h2>Je hebt nog geen ideeen!</h2>
                     <Link to="/user/ideas/new-idea">
                         <button>Plaats je eigen idee!</button>
@@ -45,7 +45,6 @@ export default function AllIdeasFromUser() {
 
                 </div>
             )}
-
         </>
     )
 }

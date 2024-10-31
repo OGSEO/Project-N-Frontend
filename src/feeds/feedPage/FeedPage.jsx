@@ -25,28 +25,28 @@ export default function FeedPage() {
         void fetchIdeas();
     }, []);
 
+    if (!ideas) {
+        return <div className="feed-page-container"><span className="load-message">Ideeen aan het laden...</span></div>
+    }
 
-    console.log(ideas);
-
-    return (<>
-        {ideas.length > 0 ? (
-            <div className="feed-page-container">
-                <ul>
+    return (
+        <>
+            {ideas.length > 0 ? (
+                <div className="feed-page-container">
                     {ideas.map((idea) => (
-                            <FeedIdeaItem idea={idea} key={idea.id}/>
+                        <FeedIdeaItem idea={idea} key={idea.id}/>
                     ))}
-                </ul>
-            </div>
-        ) : (
-            <div className="feed-page-container-no-content">
-                <h2>Er zijn nog geen ideeen!</h2>
-                {!isPolitician && (
-                    <Link to="/user/ideas/new-idea">
-                        <button>Plaats als eerste een idee!</button>
-                    </Link>
-                )}
-            </div>
-        )}
-    </>
-)
+                </div>
+            ) : (
+                <div className="feed-page-container-no-content">
+                    <h2>Er zijn nog geen ideeen!</h2>
+                    {!isPolitician && (
+                        <Link to="/user/ideas/new-idea">
+                            <button>Plaats als eerste een idee!</button>
+                        </Link>
+                    )}
+                </div>
+            )}
+        </>
+    )
 }

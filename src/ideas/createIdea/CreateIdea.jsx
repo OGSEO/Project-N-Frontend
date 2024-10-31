@@ -1,17 +1,19 @@
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {TextField} from "../../components/textField/TextField.jsx";
 import ApiService from "../../service/ApiService.js";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import './CreateIdea.css';
 import FormButton from "../../components/ui/formButton/FormButton.jsx";
+import FormLink from "../../components/ui/formLink/FormLink.jsx";
 
 export default function CreateIdea() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    // const auth = useAuth();
 
-    const {register, handleSubmit, formState: {errors}} = useForm({
+    const {register,
+        handleSubmit,
+        formState: {errors}} = useForm({
             defaultValues: {
                 title: '',
                 description: ''
@@ -35,46 +37,32 @@ export default function CreateIdea() {
         }
     }
 
-    // function onCancel() {
-    //     navigate("/user/ideas");
-    // }
-
-
     return (
         <div className='create-idea-container'>
-            <h1>Deel jouw idee!</h1>
-            <div className="create-idea-form">
+            <h1>Deel uw idee met de stad!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <TextField
                             label="Titel"
                             error={errors.title}
                             {...register('title', {
-                                required: "This field is required."
+                                required: "Uw idee heeft een titel nodig!"
                             })}
                         />
                         <TextField
                             label="Beschrijving"
                             error={errors.description}
                             {...register('description', {
-                                required: "This field is required."
+                                required: "Uw idee heeft een beschrijving nodig!"
                             })}
                         />
                     </div>
 
                     <div className='buttons-box'>
-                        <Link to="..">Cancel</Link>
-                        <button>{isLoading ? "Submitting..." : "Create Idea"}</button>
-
-
-                        {/*<FormButton styling="cancelBtn" onBtnClick={onCancel}>Cancel</FormButton>*/}
-                        {/*<FormButton onBtnClick={onSubmit}>Submit Idea</FormButton>*/}
-
-                        {/*<button onSubmit={onSubmit}>Submit</button>*/}
+                        <FormLink linkTo='..' relativeTo='path'>Cancel Idee</FormLink>
+                        <FormButton type='submit' onSubmit={onSubmit}>Deel Idee</FormButton>
                     </div>
                 </form>
-            </div>
-
         </div>
     )
 

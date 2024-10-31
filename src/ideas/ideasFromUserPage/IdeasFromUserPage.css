@@ -1,8 +1,8 @@
-.feed-page-container {
-    width: 636px;
+.all-ideas-container {
+    width:636px;
 }
 
-.feed-page-container-no-content {
+.all-ideas-container-no-content {
     width:600px;
     background-color: var(--white);
     display: flex;
@@ -15,7 +15,7 @@
     border: 1px solid var(--border-box);
 }
 
-.feed-page-container-no-content button {
+.all-ideas-no-content button {
     font-size: 24px;
     padding: 16px;
     background-color: var(--primary-color);
@@ -24,7 +24,7 @@
     border: 1px solid transparent;
 }
 
-.feed-page-container-no-content button:hover {
+.all-ideas-no-content button:hover {
     color: var(--primary-color);
     background-color: var(--white);
     border: 1px solid var(--primary-color);

@@ -18,7 +18,6 @@ export default function FeedIdeaItem({idea}) {
     }
 
     return (
-        <li>
             <article className="idea-feed-item">
                 <div className="idea-feed-item-info-box">
                     <div>
@@ -62,7 +61,6 @@ export default function FeedIdeaItem({idea}) {
 
 
             </article>
-        </li>
     )
 }
 

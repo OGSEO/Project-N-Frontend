@@ -1,12 +1,10 @@
 .profile-page-container {
-    width: 876px;
-    background-color: #fff;
+    width: 600px;
+    background-color: var(--white);
     border-radius: 8px;
     padding: 16px;
     border: 1px solid #E8E8E8;
 }
-
-
 
 .profile-info {
     padding: 16px;
@@ -23,4 +21,8 @@
 .profile-title {
     font-size: 26px;
     margin-top:16px;
+}
+
+.load-message {
+
 }

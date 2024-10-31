@@ -1,0 +1,25 @@
+.post-avatar-page-container {
+    width: 600px;
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #E8E8E8;
+}
+
+.preview-box {
+    display: flex;
+    padding: 24px 0;
+    justify-self: center;
+}
+
+.image-preview {
+    width: 300px;
+    height :300px;
+}
+
+.post-avatar-buttons-box {
+    display: flex;
+    padding: 24px 0;
+    justify-content: center;
+    align-items: center;
+}

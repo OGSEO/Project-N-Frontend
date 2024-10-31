@@ -1,26 +1,15 @@
-.button {
-    margin: 6px 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 6px;
-    letter-spacing: 0.4px;
-}
-
-.primaryBtn {
+.form-button {
     background-color: var(--primary-color);
     color: var(--white);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
 }
 
-.cancelBtn {
-    background-color: transparent;
-    color: var(--primary-color);
-}
-
-.primaryBtn:hover {
+.form-button:hover {
     background-color: var(--white);
     color: var(--primary-color);
 }

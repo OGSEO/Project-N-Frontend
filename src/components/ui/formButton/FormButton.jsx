@@ -1,20 +1,8 @@
-import './FormButton.css'
+import './FormButton.css';
 
-export default function FormButton({styling, children, onBtnClick}) {
-
-    function getButtonClass() {
-        switch(styling) {
-            case 'cancelBtn':
-                return "cancelBtn"
-            default:
-                return "primaryBtn";
-        }
-    }
-
-
-
+export default function FormButton({type, children, onSubmit }) {
     return (
-        <button className={`${getButtonClass()} button`} onClick={onBtnClick}>
+        <button className='form-button' type={type} onSubmit={onSubmit}>
             {children}
         </button>
     )

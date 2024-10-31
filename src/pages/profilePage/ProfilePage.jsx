@@ -26,7 +26,7 @@ export default function ProfilePage() {
     }, []);
 
     if (!userInfo) {
-        return <div>Loading....................</div>
+        return <div className="profile-page-container"><span className="load-message">Profiel aan het laden...</span></div>
     }
 
     const handleAddressClick = () => {
@@ -43,7 +43,7 @@ export default function ProfilePage() {
                     <span className="profile-username">{userInfo.name} </span>
                     <span><strong>Email: </strong> {userInfo.email} </span>
                     <span><strong>Role: </strong> {userInfo.role} </span>
-                    <span className="profile-title">Address</span>
+                    <span className="profile-title">Adres: </span>
                     {userInfo.address ? (
                         <div>
                             <p><strong>Street: </strong>{userInfo.address.street}</p>
@@ -53,7 +53,7 @@ export default function ProfilePage() {
                         </div>
                     ) : (
                         <div>
-                            <p>No Address Information available</p>
+                            <p>Vul je adres in!</p>
                         </div>
                     )}
                     <button className="profile-button" onClick={handleAddressClick}>

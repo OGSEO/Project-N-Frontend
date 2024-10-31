@@ -1,9 +1,12 @@
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
 
 import './EditIdea.css';
+import FormLink from "../../components/ui/formLink/FormLink.jsx";
+import FormButton from "../../components/ui/formButton/FormButton.jsx";
+import {TextField} from "../../components/textField/TextField.jsx";
 
 export default function EditIdea() {
     const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +17,9 @@ export default function EditIdea() {
         "description" : ""
     })
 
-    const {register, handleSubmit} = useForm({
+    const {register,
+        handleSubmit,
+        formState: {errors}} = useForm({
             defaultValues: {
                 title: `${currentIdea.title}`,
                 description: ''
@@ -62,25 +67,30 @@ export default function EditIdea() {
             <h1>Edit Idea</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        {...register('title')}
+                    <TextField
+                        label="Titel"
+                        error={errors.title}
+                        {...register('title', {
+                            required: "Uw idee heeft een titel nodig!"
+                        })}
                     />
-                </div>
-                <div>
-                    <label htmlFor="description">Description</label>
-                    <input
-                        type="text"
-                        id="description"
-                        {...register('description')}
+                    <TextField
+                        label="Beschrijving"
+                        error={errors.description}
+                        {...register('description', {
+                            required: "Uw idee heeft een beschrijving nodig!"
+                        })}
                     />
                 </div>
                 <div className='buttons-box'>
 
-                    <Link to="../.." relative="path">Cancel</Link>
-                    <button>{isLoading ? "Submitting..." : "Edit Idea"}</button>
+                    {/*<Link to="../.." relative="path">Cancel</Link>*/}
+                    {/*<button>{isLoading ? "Submitting..." : "Edit Idea"}</button>*/}
+
+                    <FormLink linkTo='..' relativeTo='root'>Cancel Edit</FormLink>
+                    <FormButton type='submit' onSubmit={onSubmit}>Edit Idee</FormButton>
+
+
                 </div>
             </form>
         </div>

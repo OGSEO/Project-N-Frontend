@@ -1,6 +1,6 @@
 .create-party-container  {
-    width: 876px;
-    background-color: #fff;
+    width: 600px;
+    background-color: var(--white);
     border-radius: 8px;
     padding: 16px;
     border: 1px solid #E8E8E8;
@@ -9,20 +9,12 @@
     gap: 16px;
 }
 
-.create-party-form {
-    width: 100%;
+.create-party-container form {
+    width: calc(100% - 4px);
 }
-
-/*.create-idea-container form {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    gap: 16px*/
-/*}*/
 
 .buttons-box {
     display: flex;
     justify-content: flex-end;
     gap: 16px;
 }
-
-/*}*/

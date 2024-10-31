@@ -1,0 +1,16 @@
+.form-link {
+    background-color: transparent;
+    text-decoration: none;
+    color: var(--primary-color);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 16px;
+}
+
+.form-link:hover {
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+}

@@ -1,13 +1,17 @@
 import './IdeaItem.css';
-import IdeaItemButton from "../../components/ui/ideaItemButton/IdeaItemButton.jsx";
 import ApiService from "../../service/ApiService.js";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import CommentList from "../../comments/commentList/CommentList.jsx";
+import FormButton from "../../components/ui/formButton/FormButton.jsx";
 
 export default function IdeaItem({idea}) {
     const navigate = useNavigate();
     const [showComments, setShowComments] = useState(false);
+
+    async function editIdeaHandler() {
+        navigate("{${idea.id}/edit}");
+    }
 
     async function deleteIdeaHandler() {
         const response = await ApiService.deleteIdea(idea.id);
@@ -15,7 +19,6 @@ export default function IdeaItem({idea}) {
         if (response.statusCode === 200) {
             navigate("/user/ideas");
         }
-
     }
 
     return (
@@ -39,13 +42,10 @@ export default function IdeaItem({idea}) {
                         <button onClick={() => setShowComments(!showComments)}>commentaren</button>
                     </div>
                 </div>
-                <div className="idea-item-actions-box">
-                    <div>
-                        <IdeaItemButton label="Edit" linkTo={`${idea.id}/edit`}/>
-                    </div>
-                    <div>
-                        <IdeaItemButton label="Delete" deleteBtn onClick={deleteIdeaHandler}/>
-                    </div>
+
+                <div className='idea-item-buttons-box'>
+                    <FormButton type='button' onSubmit={editIdeaHandler}>Edit</FormButton>
+                    <FormButton type='button' onSubmit={deleteIdeaHandler}>Delete</FormButton>
                 </div>
             </div>
 

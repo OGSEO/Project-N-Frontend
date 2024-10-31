@@ -1,9 +1,11 @@
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import ApiService from "../../service/ApiService.js";
 import {TextField} from "../../components/textField/TextField.jsx";
 import './CreatePoliticalParty.css'
+import FormLink from "../../components/ui/formLink/FormLink.jsx";
+import FormButton from "../../components/ui/formButton/FormButton.jsx";
 
 export default function CreatePoliticalParty() {
     const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +30,7 @@ export default function CreatePoliticalParty() {
                 navigate('/user/feed');
             }
         } catch (error) {
-            console.error("Error submitting idea", error);
+            console.error("Error Creating Political Party", error);
         } finally {
             setIsLoading(false);
         }
@@ -38,31 +40,29 @@ export default function CreatePoliticalParty() {
     return (
         <div className='create-party-container'>
             <h1>Aanmelden Politieke Partij</h1>
-            <div className="create-party-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <TextField
                             label="Naam"
                             error={errors.name}
                             {...register('name', {
-                                required: "This field is required."
+                                required: "Uw Politieke Partij heeft een naam nodig!"
                             })}
                         />
                         <TextField
                             label="Beschrijving"
                             error={errors.description}
                             {...register('description', {
-                                required: "This field is required."
+                                required: "Uw Politieke Partij heeft een beschrijving nodig!"
                             })}
                         />
                     </div>
 
                     <div className='buttons-box'>
-                        <Link to="..">Cancel</Link>
-                        <button>{isLoading ? "Submitting..." : "Aanmelden"}</button>
+                        <FormLink linkTo='..' relativeTo='path'>Cancel</FormLink>
+                        <FormButton type='submit' onSubmit={onSubmit}>Partij Aanmaken</FormButton>
                     </div>
                 </form>
-            </div>
         </div>
     )
 

@@ -7,10 +7,9 @@ import NavBarCta from "../ui/navBarCta/NavBarCta.jsx";
 import NavBarLink from "../ui/navBarLink/NavBarLink.jsx";
 
 export default function SidebarNav() {
-    const {logout, user, isAuth} = useContext(AuthContext);
+    const {logout, user} = useContext(AuthContext);
     console.log(user);
     const isPolitician = (user.role === "POLITICIAN");
-    // const isAuthenticated = isAuth;
 
     function logouthandler() {
         const confirm = window.confirm("Weet u zeker dat u wilt uitloggen?");
@@ -55,9 +54,9 @@ export default function SidebarNav() {
             )}
 
             <div className="sidebar-nav-menu">
+                <NavBarLink label="Home" linkTo="/user/feed"/>
                 <NavBarLink label="Mijn Account" linkTo="/user"/>
                 <NavBarLink label="Mijn Avatar" linkTo="/user/1/avatar"/>
-                <NavBarLink label="Mijn Feed" linkTo="/user/feed"/>
                 <NavBarLink label="Mijn Ideeen" linkTo="/user/ideas"/>
                 <NavBarButton label="Uitloggen" type={'button'} onClick={logouthandler}/>
             </div>

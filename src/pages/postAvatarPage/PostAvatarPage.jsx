@@ -2,7 +2,9 @@ import {useState} from 'react';
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 
-function PostAvatar() {
+import './PostAvatarPage.css';
+
+function PostAvatarPage() {
     const { userId } = useParams();
     const navigate = useNavigate();
 
@@ -59,31 +61,40 @@ function PostAvatar() {
     }
 
     return (
-        <div className="upload-page-container">
-            <div className="first-page-container">
-                <h1>Afbeelding uploaden en preview bekijken</h1>
+        <div className="post-avatar-page-container">
+                <h1>Profiel foto uploaden</h1>
                 <form onSubmit={(e) => sendUpload(e)}>
+
                     <label htmlFor="student-image">
-                        Kies afbeelding:
+                        {/*Kies afbeelding:*/}
                         <input type="file" name="image-field" id="student-image"
                                onChange={(e) => handleAvatarChange(e)}/>
                     </label>
+
                     {previewUrlAvatar &&
+
                         <label>
-                            Preview:
-                            <img src={previewUrlAvatar} alt="Voorbeeld van de afbeelding die zojuist gekozen is"
-                                 className="image-preview"/>
+                            <div className='preview-box'>
+                                <img src={previewUrlAvatar} alt="Voorbeeld van de afbeelding die zojuist gekozen is"
+                                     className="image-preview"/>
+                            </div>
                         </label>
+
                     }
-                    <button type="submit">Uploaden</button>
+
+                    <div className='post-avatar-buttons-box'>
+
+                        <button type="submit">Uploaden</button>
+                    </div>
+
+
                 </form>
-                {messages.avatar.success && <p>De foto is succesvol geüpload!</p>}
+            {messages.avatar.success && <p>De foto is succesvol geüpload!</p>}
                 {messages.avatar.error &&
                     <p>Er is iets misgegaan bij het uploaden van de foto. Probeer het
                         opnieuw.</p>}
-            </div>
         </div>
     );
 }
 
-export default PostAvatar;
+export default PostAvatarPage;
