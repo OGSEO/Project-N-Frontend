@@ -1,5 +1,5 @@
 :root {
-    --background: #ebedff;
+    --background: lightgray;
     --primary-color: cornflowerblue;
     --border-box: #E8E8E8;
     --fadedGray: #818181;
@@ -21,7 +21,7 @@
 
 body {
     display: flex;
-    background-color: #F4F2EE;
+    background-color: var(--background);
     padding-top: 16px;
     justify-content: center;
 }

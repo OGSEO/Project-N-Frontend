@@ -200,9 +200,24 @@ export default class ApiService {
         return response.data;
     }
 
+    static async createSupport(ideaId) {
+        const response = await axios.post(
+            `${this.BASE_URL}/idea/support-idea/${ideaId}`, {},{
+                headers: this.getHeader()
+            })
+        return response.data;
+    }
+
     static async createUnLike(ideaId) {
         const response = await axios.post(
             `${this.BASE_URL}/idea/unlike-idea/${ideaId}`, {}, {
+                headers: this.getHeader()
+            })
+        return response.data;
+    }
+    static async createUnSupport(ideaId) {
+        const response = await axios.post(
+            `${this.BASE_URL}/idea/unsupport-idea/${ideaId}`, {},{
                 headers: this.getHeader()
             })
         return response.data;

@@ -4,12 +4,18 @@ import IdeaItemActionButton from "../../components/ui/ideaItemActionButton/IdeaI
 import {useNavigate} from "react-router-dom";
 import {BsChatRightText} from "react-icons/bs";
 import CommentList from "../../comments/commentList/CommentList.jsx";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import SteunBox from "../../components/steunBox/SteunBox.jsx";
 
 export default function FeedIdeaItem({idea}) {
     const [showComments, setShowComments] = useState(false);
-    const [ideaLikedArray, setIdeaLikedArray] = useState(idea.userLikes)
+    const [ideaLikedArray, setIdeaLikedArray] = useState(idea.userLikes);
+    const [ideaSupportedArray, setIdeaSupportedArray] = useState(idea.politicalSupports)
     const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
+    console.log(user);
+    const isPolitician = (user.role === "POLITICIAN");
 
     console.log(idea)
 
@@ -39,6 +45,7 @@ export default function FeedIdeaItem({idea}) {
 
                 <div className="like-comment-box">
                     {console.log(ideaLikedArray)}
+                    {console.log(ideaSupportedArray)}
                     <div className="like-box">likes: {ideaLikedArray.length}</div>
 
                     <div className="comment-box">
@@ -48,10 +55,15 @@ export default function FeedIdeaItem({idea}) {
 
 
                 <div className='cta-box'>
-                    <div>
-                        <LikeBox liked={ideaLikedArray} setLiked={setIdeaLikedArray} idea={idea}/>
-                    </div>
-                    <div>Steun</div>
+                    {isPolitician ? (
+                        <div>
+                            <SteunBox supported={ideaSupportedArray} setSupported={setIdeaSupportedArray} idea={idea}/>
+                        </div>
+                    ) : (
+                        <div>
+                            <LikeBox liked={ideaLikedArray} setLiked={setIdeaLikedArray} idea={idea}/>
+                        </div>
+                    )}
                     <div>
                         <IdeaItemActionButton label="Opmerking" clickEvent={commentHandler} icon={<BsChatRightText/>}/>
                     </div>

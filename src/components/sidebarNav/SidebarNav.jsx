@@ -8,7 +8,6 @@ import NavBarLink from "../ui/navBarLink/NavBarLink.jsx";
 
 export default function SidebarNav() {
     const {logout, user} = useContext(AuthContext);
-    console.log(user);
     const isPolitician = (user.role === "POLITICIAN");
 
     function logouthandler() {
@@ -18,7 +17,7 @@ export default function SidebarNav() {
         }
     }
 
-    const [avatarUrl, setAvatarUrl] = useState("http://localhost:8080/user/1/avatar");
+    const [avatarUrl, setAvatarUrl] = useState(`http://localhost:8080/user/${user.id}/avatar`);
 
     // useEffect(() => {
     //     if (auth.user.avatar === null ) {
@@ -34,9 +33,8 @@ export default function SidebarNav() {
                 <div>
                     {/*<Link to={`/users/1/avatar`}>*/}
                     {}
-                    <img src={avatarUrl}/>
+                    <img src={avatarUrl} />
                     {/*</Link>*/}
-                    IMG
                 </div>
             </div>
             <div className="sidebar-username">
@@ -56,7 +54,7 @@ export default function SidebarNav() {
             <div className="sidebar-nav-menu">
                 <NavBarLink label="Home" linkTo="/user/feed"/>
                 <NavBarLink label="Mijn Account" linkTo="/user"/>
-                <NavBarLink label="Mijn Avatar" linkTo="/user/1/avatar"/>
+                <NavBarLink label="Mijn Avatar" linkTo={`/user/${user.id}/avatar`}/>
                 <NavBarLink label="Mijn Ideeen" linkTo="/user/ideas"/>
                 <NavBarButton label="Uitloggen" type={'button'} onClick={logouthandler}/>
             </div>

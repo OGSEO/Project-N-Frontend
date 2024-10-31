@@ -1,11 +1,11 @@
-import './FeedIdeaDetail.css';
+import './FeedIdeaCommenting.css';
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import ApiService from "../../service/ApiService.js";
 import CreateComment from "../../comments/createComment/CreateComment.jsx";
 import CommentList from "../../comments/commentList/CommentList.jsx";
 
-export default function FeedIdeaDetail() {
+export default function FeedIdeaCommenting() {
 
     const [currentIdea, setCurrentIdea] = useState({
         "title" : "",
@@ -43,19 +43,18 @@ export default function FeedIdeaDetail() {
     console.log(currentIdea);
 
     return (
-        <>
-            <h2>Idea Details</h2>
+        <div className='idea-commenting-container'>
+            <h2>Plaats een opmerking</h2>
             <Link to="..">Terug naar ideeen</Link>
-            <h3>{currentIdea.title}</h3>
-            <h3>{currentIdea.description}</h3>
-            {/*<Link to="edit" >Edit Idea</Link>*/}
-            {/*<button onClick={deleteIdeaHandler}>Delete Idea</button>*/}
-            <div>
+            <div className='idea-commenting-title'>
+                {currentIdea.title}
+            </div>
+            <div className='idea-commenting-description'>
+                {currentIdea.description}
+            </div>
+            <div className='idea-commenting-comment-box'>
                 <CreateComment />
             </div>
-            {/*<div>*/}
-            {/*    <CommentList />*/}
-            {/*</div>*/}
-        </>
+        </div>
     )
 }

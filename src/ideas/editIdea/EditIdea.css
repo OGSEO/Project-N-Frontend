@@ -10,9 +10,19 @@
 }
 
 .edit-idea-container form {
-
     width: calc(100% - 4px);
+}
+.idea-commenting-title {
+    font-size: 24px;
+    font-weight: 600;
+}
 
+.idea-commenting-description {
+    font-size: 18px;
+}
+
+.idea-commenting-comment-box {
+    padding: 16px 0px;
 }
 
 .buttons-box {
