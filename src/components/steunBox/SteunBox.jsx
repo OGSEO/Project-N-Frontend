@@ -8,9 +8,9 @@ export default function SteunBox({idea, setSupported, supported}) {
     const [supportedIdea, setSupportedIdea] = useState(false);
     const {user} = useContext(AuthContext);
 
-    console.log(user);
+    // console.log(user);
 
-    console.log(supported);
+    // console.log(supported);
 
     useEffect(() => {
         let result;

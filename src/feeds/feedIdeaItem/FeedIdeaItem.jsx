@@ -4,9 +4,10 @@ import IdeaItemActionButton from "../../components/ui/ideaItemActionButton/IdeaI
 import {useNavigate} from "react-router-dom";
 import {BsChatRightText} from "react-icons/bs";
 import CommentList from "../../comments/commentList/CommentList.jsx";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import SteunBox from "../../components/steunBox/SteunBox.jsx";
+import ApiService from "../../service/ApiService.js";
 
 export default function FeedIdeaItem({idea}) {
     const [showComments, setShowComments] = useState(false);
@@ -14,10 +15,39 @@ export default function FeedIdeaItem({idea}) {
     const [ideaSupportedArray, setIdeaSupportedArray] = useState(idea.politicalSupports)
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     const isPolitician = (user.role === "POLITICIAN");
 
-    console.log(idea)
+    /////////////////////////////////////////////////
+
+    const [comments, setComments] = useState([]);
+    // const [ideaId, setIdeaId] = useState(0);
+
+    // console.log(idea);
+
+    useEffect(() => {
+
+        // setIdeaId(idea.id)
+
+        async function fetchComments() {
+            try {
+                const response = await ApiService.getAllComments(idea.id);
+                // console.log(response);
+                const newCommentList = response.commentList;
+                setComments(newCommentList);
+                // console.log(newCommentList)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+
+        void fetchComments();
+
+    }, [idea.id]);
+
+    ////////////////////////////////////////////////////////////
+
+    // console.log(idea)
 
     function commentHandler() {
         navigate(`/user/feed/${idea.id}`);
@@ -44,12 +74,23 @@ export default function FeedIdeaItem({idea}) {
                 </div>
 
                 <div className="like-comment-box">
-                    {console.log(ideaLikedArray)}
-                    {console.log(ideaSupportedArray)}
+                    {/*{console.log(ideaLikedArray)}*/}
+                    {/*{console.log(ideaSupportedArray)}*/}
                     <div className="like-box">likes: {ideaLikedArray.length}</div>
 
                     <div className="comment-box">
-                        <button onClick={() => setShowComments(!showComments)}>commentaren</button>
+                        {comments.length > 0 ? (
+                            <button className="comment-box-button" onClick={() => setShowComments(!showComments)}>
+                                {showComments ? (
+                                    <span>Hide {comments.length} commentaren</span>
+                                ) : (
+                                   <span>Show {comments.length} commentaren</span>
+                                )}
+                            </button>
+                        ) :(
+                            <span>0 opmerkingen</span>
+                        )}
+
                     </div>
                 </div>
 
@@ -81,7 +122,7 @@ export default function FeedIdeaItem({idea}) {
                     </div>
                 </div>
 
-                    {showComments && <CommentList idea={idea}/>}
+                    {showComments && <CommentList comments={comments}/>}
 
 
             </article>

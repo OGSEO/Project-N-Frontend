@@ -11,7 +11,7 @@ export default function PoliticalPartyList() {
                 const response = await ApiService.getAllPoliticalParties();
                 const politicalPartyList = response.partyList;
                 setPoliticalParties(politicalPartyList);
-                console.log(politicalPartyList)
+                // console.log(politicalPartyList)
             } catch (e) {
                 console.error(e)
             }

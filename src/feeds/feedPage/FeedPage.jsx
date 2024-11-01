@@ -15,7 +15,7 @@ export default function FeedPage() {
             try {
                 const response = await ApiService.getAllIdeas();
                 const ideaList = response.ideaList;
-                console.log(response);
+                // console.log(response);
                 setIdeas(ideaList);
             } catch (e) {
                 console.error(e)

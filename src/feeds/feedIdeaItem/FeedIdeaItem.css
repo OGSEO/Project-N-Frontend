@@ -23,6 +23,7 @@
 
 .create-date {
     font-size: 16px;
+    color: #777777;
 }
 
 .idea-feed-item-body {
@@ -59,6 +60,10 @@
     justify-content: space-between;
     padding: 8px;
     border-bottom: 1px solid #E8E8E8;
+}
+
+.comment-box-button {
+    border: none;
 }
 
 .cta-box {
