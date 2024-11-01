@@ -71,7 +71,9 @@ function AuthContextProvider({children}) {
                     username: result.user.name,
                     email: result.user.email,
                     id: result.user.id,
-                    role: result.user.role
+                    role: result.user.role,
+                    hasParty: result.user.hasParty,
+                    hasProfileImage: result.user.hasProfileImage
                 },
                 status: 'done',
             } );

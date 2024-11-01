@@ -53,6 +53,18 @@ export default function FeedIdeaItem({idea}) {
                     </div>
                 </div>
 
+                <div className='support-box'>
+                    <ul>
+                        {
+                            ideaSupportedArray.map((supporter) => (
+                                <li key={supporter}>
+                                    {supporter}
+                                </li>
+                            ))
+
+                        } </ul>
+                </div>
+
 
                 <div className='cta-box'>
                     {isPolitician ? (

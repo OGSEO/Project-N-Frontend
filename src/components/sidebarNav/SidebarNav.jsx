@@ -5,10 +5,13 @@ import NavBarButton from "../ui/navBarButton/navBarButton.jsx";
 import NavBarCta from "../ui/navBarCta/NavBarCta.jsx";
 // import {Link, useNavigate} from "react-router-dom";
 import NavBarLink from "../ui/navBarLink/NavBarLink.jsx";
+import AvatarBlankImg from '../../assets/avatar-blank.png' ;
+import {Link} from "react-router-dom";
 
 export default function SidebarNav() {
     const {logout, user} = useContext(AuthContext);
     const isPolitician = (user.role === "POLITICIAN");
+    console.log(user);
 
     function logouthandler() {
         const confirm = window.confirm("Weet u zeker dat u wilt uitloggen?");
@@ -19,33 +22,32 @@ export default function SidebarNav() {
 
     const [avatarUrl, setAvatarUrl] = useState(`http://localhost:8080/user/${user.id}/avatar`);
 
-    // useEffect(() => {
-    //     if (auth.user.avatar === null ) {
-    //         setAvatarUrl(`http://localhost:8080/user/0/avatar`)
-    //     } else {
-    //         setAvatarUrl(`http://localhost:8080/user/1/avatar`)
-    //     }
-    // }, [avatarUrl]);
-
     return (
         <aside className='sidebar-nav-container'>
-            <div className="sidebar-avatar">
-                <div>
-                    {/*<Link to={`/users/1/avatar`}>*/}
-                    {}
-                    <img src={avatarUrl} />
-                    {/*</Link>*/}
+            {user.hasProfileImage ? (
+                <div className="sidebar-avatar">
+                    <div>
+                        <img src={avatarUrl} alt={`Een profielfoto van ${user.username}`}/>
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className="sidebar-avatar">
+                        <Link to={`/user/${user.id}/avatar`}>
+                            <img src={AvatarBlankImg} alt="Een placeholder van de profielfoto"/>
+                        </Link>
+                </div>
+            )}
+
             <div className="sidebar-username">
                 {user?.username}
             </div>
 
-            {isPolitician ? (
+            {isPolitician && !user.hasParty && (
                 <div className="sidebar-cta-box">
                     <NavBarCta label="Aanmelden Politieke Partij" linkTo="/user/new-political-party"/>
                 </div>
-            ) : (
+            )}
+            {!isPolitician && (
                 <div className="sidebar-cta-box">
                     <NavBarCta label="Ik heb een idee" linkTo="/user/ideas/new-idea"/>
                 </div>

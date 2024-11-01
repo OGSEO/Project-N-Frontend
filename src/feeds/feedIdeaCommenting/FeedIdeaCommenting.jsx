@@ -44,8 +44,6 @@ export default function FeedIdeaCommenting() {
 
     return (
         <div className='idea-commenting-container'>
-            <h2>Plaats een opmerking</h2>
-            <Link to="..">Terug naar ideeen</Link>
             <div className='idea-commenting-title'>
                 {currentIdea.title}
             </div>

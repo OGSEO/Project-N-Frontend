@@ -4,13 +4,17 @@ import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 // import {useAuth} from "../../context/AuthContext.jsx";
 import ApiService from "../../service/ApiService.js";
+import {TextField} from "../../components/textField/TextField.jsx";
+import FormLink from "../../components/ui/formLink/FormLink.jsx";
+import FormButton from "../../components/ui/formButton/FormButton.jsx";
 
 export default function CreateComment() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     // const auth = useAuth();
     const {ideaId} = useParams();
-    const {register, handleSubmit} = useForm({
+    const {register, handleSubmit,
+        formState: {errors}} = useForm({
             defaultValues: {
                 content: '',
             },
@@ -20,25 +24,9 @@ export default function CreateComment() {
 
     async function onSubmit(data) {
         setIsLoading(true);
-        // const user = await ApiService.getLoggedUser();
-
-        // const { content } = data;
-        //
-        // const newData = {
-        //     content: content,
-        //     tempUserId: user.user.email
-        // }
 
         console.log(data);
         try {
-            // const { content } = data;
-            //
-            // const newData = {
-            //     content,
-            //     name: idea.user.name,
-            //     ideaId: idea.id
-            // }
-            // console.log(newData);
             const response = await ApiService.createComment(data, ideaId)
             console.log(response);
             navigate("/user/feed");
@@ -51,21 +39,28 @@ export default function CreateComment() {
     }
 
     return (
-        // <div className='comment-section'>
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='comment-section'>
-                <div>
-                    {/*<label htmlFor="content"></label>*/}
-                    <input
-                        type="text"
-                        id="content"
-                        {...register('content')}
-                    />
+                {/*<div>*/}
+                {/*    <input*/}
+                {/*        type="text"*/}
+                {/*        id="content"*/}
+                {/*        {...register('content')}*/}
+                {/*    />*/}
+                {/*</div>*/}
+                <TextField
+                    label="Opmerking"
+                    error={errors.content}
+                    {...register('content', {
+                        required: "Dit veld is verplicht!"
+                    })}
+                />
+                {/*<button>{isLoading ? "Submitting..." : "Opmerking plaatsen"}</button>*/}
+                <div className='create-comment-buttons-box'>
+                    <FormLink linkTo='..' relativeTo='path'>Cancel Idee</FormLink>
+                    <FormButton type='submit' onSubmit={onSubmit}>Deel Idee</FormButton>
                 </div>
-                <button>{isLoading ? "Submitting..." : "Opmerking plaatsen"}</button>
             </div>
-
         </form>
-        // </div>
     )
 }
