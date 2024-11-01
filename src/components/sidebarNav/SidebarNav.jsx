@@ -8,10 +8,18 @@ import NavBarLink from "../ui/navBarLink/NavBarLink.jsx";
 import AvatarBlankImg from '../../assets/avatar-blank.png' ;
 import {Link} from "react-router-dom";
 
-export default function SidebarNav() {
+export default function SidebarNav({image}) {
+    // const {logout, user, avatarUrl} = useContext(AuthContext);
     const {logout, user} = useContext(AuthContext);
+    const [profileImage, setProfileImage] = useState('')
+
     const isPolitician = (user.role === "POLITICIAN");
     console.log(user);
+
+    useEffect(() => {
+        console.log('toggle mij')
+        setProfileImage(user.imgUrl)
+    }, [image]);
 
     function logouthandler() {
         const confirm = window.confirm("Weet u zeker dat u wilt uitloggen?");
@@ -20,26 +28,48 @@ export default function SidebarNav() {
         }
     }
 
-    const [avatarUrl, setAvatarUrl] = useState(`http://localhost:8080/user/${user.id}/avatar`);
+    // useEffect(() => {
+    //
+    // }, [avatarUrl]);
+
 
     return (
         <aside className='sidebar-nav-container'>
-            {user.hasProfileImage ? (
+            {image ? (
                 <div className="sidebar-avatar">
                     <div>
-                        <img src={avatarUrl} alt={`Een profielfoto van ${user.username}`}/>
+                        <img src={profileImage} alt={`Een profielfoto van ${user.username}`}/>
                     </div>
                 </div>
             ) : (
                 <div className="sidebar-avatar">
-                        <Link to={`/user/${user.id}/avatar`}>
-                            <img src={AvatarBlankImg} alt="Een placeholder van de profielfoto"/>
-                        </Link>
+                    <Link to={`/user/${user.id}/avatar`}>
+                        <img src={AvatarBlankImg} alt="Een placeholder van de profielfoto"/>
+                    </Link>
                 </div>
             )}
 
-            <div className="sidebar-username">
-                {user?.username}
+            <div className="sidebar-username-box">
+                {isPolitician ? (
+                        user.partyName != null ? (
+                            <>
+                                <div className="sidebar-username">
+                                    {user?.partyName}
+                                </div>
+                                <div className="sidebar-username-small">
+                                    ( {user?.username} )
+                                </div>
+                            </>
+                        ) : (
+                            <div className="sidebar-username">
+                                {user?.username}
+                            </div>
+                        )
+                ) : (
+                    <div className="sidebar-username">
+                        {user?.username}
+                    </div>
+                )}
             </div>
 
             {isPolitician && !user.hasParty && (
@@ -57,7 +87,9 @@ export default function SidebarNav() {
                 <NavBarLink label="Home" linkTo="/user/feed"/>
                 <NavBarLink label="Mijn Account" linkTo="/user"/>
                 <NavBarLink label="Mijn Avatar" linkTo={`/user/${user.id}/avatar`}/>
-                <NavBarLink label="Mijn Ideeen" linkTo="/user/ideas"/>
+                {!isPolitician && (
+                    <NavBarLink label="Mijn Ideeen" linkTo="/user/ideas"/>
+                )}
                 <NavBarButton label="Uitloggen" type={'button'} onClick={logouthandler}/>
             </div>
         </aside>

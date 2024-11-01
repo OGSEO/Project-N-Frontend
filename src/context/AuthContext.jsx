@@ -5,6 +5,7 @@ import ApiService from "../service/ApiService.js";
 export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
+    const [avatarUrl, setAvatarUrl] = useState('');
     const [isAuth, toggleIsAuth] = useState({
         isAuth: false,
         user: null,
@@ -35,7 +36,6 @@ function AuthContextProvider({children}) {
         localStorage.setItem("USER_ROLE", data.role);
         // decode de token zodat we de ID van de gebruiker hebben en data kunnen ophalen voor de context
         // const decoded = jwtDecode( data.token );
-
         // geef de ID, token en redirect-link mee aan de fetchUserData functie (staat hieronder)
         void fetchUserData();
         // link de gebruiker door naar de profielpagina
@@ -73,11 +73,13 @@ function AuthContextProvider({children}) {
                     id: result.user.id,
                     role: result.user.role,
                     hasParty: result.user.hasParty,
-                    hasProfileImage: result.user.hasProfileImage
+                    hasProfileImage: result.user.hasProfileImage,
+                    imgUrl: result.user.imgUrl,
+                    partyName: result.user.partyName
                 },
                 status: 'done',
             } );
-
+            setAvatarUrl(result.user.imgUrl)
             navigate("/user/feed");
 
             // als er een redirect URL is meegegeven (bij het mount-effect doen we dit niet) linken we hiernnaartoe door
@@ -99,7 +101,8 @@ function AuthContextProvider({children}) {
     const contextData = {
         ...isAuth,
         login,
-        logout
+        logout,
+        avatarUrl
     };
 
     return (

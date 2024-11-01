@@ -8,14 +8,14 @@ export default function SteunBox({idea, setSupported, supported}) {
     const [supportedIdea, setSupportedIdea] = useState(false);
     const {user} = useContext(AuthContext);
 
-    // console.log(user);
-
+    console.log(user);
     // console.log(supported);
 
     useEffect(() => {
         let result;
         if(supported.length > 0) {
-            result = (supported.some(i => i.toString() === user.username));
+            // result = (supported.some(i => i.toString() === user.username));
+            result = (supported.some(i => i.toString() === user.partyName));
             setSupportedIdea(result)
         } else {
             result = false;

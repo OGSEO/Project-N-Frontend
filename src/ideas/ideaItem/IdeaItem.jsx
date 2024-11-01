@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import CommentList from "../../comments/commentList/CommentList.jsx";
 import FormButton from "../../components/ui/formButton/FormButton.jsx";
+import {generateDate} from "../../helpers/generateDate.js";
 
 export default function IdeaItem({idea}) {
     const navigate = useNavigate();
@@ -21,6 +22,8 @@ export default function IdeaItem({idea}) {
         }
     }
 
+    console.log(idea)
+
     return (
         <>
             <div className="idea-item-container">
@@ -29,7 +32,7 @@ export default function IdeaItem({idea}) {
                         {idea.title}
                     </div>
                     <div className="idea-item-date">
-                        Geplaatst op: {idea.createdAt}
+                        Geplaatst op: {generateDate(idea)}
                     </div>
                 </div>
                 <div className="idea-item-description">

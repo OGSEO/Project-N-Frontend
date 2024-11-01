@@ -4,9 +4,10 @@ import {useNavigate, useParams} from "react-router-dom";
 
 import './PostAvatarPage.css';
 
-function PostAvatarPage() {
-    const { userId } = useParams();
+function PostAvatarPage({toggleImage, image}) {
+    const {userId} = useParams();
     const navigate = useNavigate();
+    // const { setAvatarUrl } = useContext(AuthContext);
 
     const initialMessages = {
         avatar: {success: false, error: false}
@@ -48,6 +49,8 @@ function PostAvatarPage() {
                 ...prevMessages,
                 avatar: {success: true, error: false}
             }));
+
+            toggleImage(!image)
             navigate("/user");
         } catch (e) {
             console.error(e);
@@ -56,43 +59,45 @@ function PostAvatarPage() {
                 avatar: {success: false, error: true}
             }));
         }
+        // finally {
+        // setAvatarUrl(`http://localhost:8080/user/${userId}/avatar`)
+        // }
         setAvatar('');
-        setPreviewUrlAvatar('');
+        // setPreviewUrlAvatar('');
     }
 
     return (
         <div className="post-avatar-page-container">
-                <h1>Profiel foto uploaden</h1>
-                <form onSubmit={(e) => sendUpload(e)}>
+            <h1>Profiel foto uploaden</h1>
+            <form onSubmit={(e) => sendUpload(e)}>
+                <label htmlFor="student-image">
+                    {/*Kies afbeelding:*/}
+                    <input type="file" name="image-field" id="student-image"
+                           onChange={(e) => handleAvatarChange(e)}/>
+                </label>
 
-                    <label htmlFor="student-image">
-                        {/*Kies afbeelding:*/}
-                        <input type="file" name="image-field" id="student-image"
-                               onChange={(e) => handleAvatarChange(e)}/>
+                {previewUrlAvatar &&
+
+                    <label>
+                        <div className='preview-box'>
+                            <img src={previewUrlAvatar} alt="Voorbeeld van de afbeelding die zojuist gekozen is"
+                                 className="image-preview"/>
+                        </div>
                     </label>
 
-                    {previewUrlAvatar &&
+                }
 
-                        <label>
-                            <div className='preview-box'>
-                                <img src={previewUrlAvatar} alt="Voorbeeld van de afbeelding die zojuist gekozen is"
-                                     className="image-preview"/>
-                            </div>
-                        </label>
+                <div className='post-avatar-buttons-box'>
 
-                    }
-
-                    <div className='post-avatar-buttons-box'>
-
-                        <button type="submit">Uploaden</button>
-                    </div>
+                    <button type="submit">Uploaden</button>
+                </div>
 
 
-                </form>
+            </form>
             {messages.avatar.success && <p>De foto is succesvol geüpload!</p>}
-                {messages.avatar.error &&
-                    <p>Er is iets misgegaan bij het uploaden van de foto. Probeer het
-                        opnieuw.</p>}
+            {messages.avatar.error &&
+                <p>Er is iets misgegaan bij het uploaden van de foto. Probeer het
+                    opnieuw.</p>}
         </div>
     );
 }

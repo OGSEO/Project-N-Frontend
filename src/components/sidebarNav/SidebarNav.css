@@ -22,14 +22,25 @@
     width:100px;
 }
 
-.sidebar-username {
-    text-align: center;
-    width: 100%;
-    font-size: 24px;
+.sidebar-username-box {
     padding: 24px 0;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
+
+.sidebar-username {
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+}
+
+.sidebar-username-small {
+    margin-top:8px;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+
 
 .sidebar-nav-menu {
     display: flex;

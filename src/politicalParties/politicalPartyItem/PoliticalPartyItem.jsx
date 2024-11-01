@@ -1,6 +1,7 @@
 import './politicalPartyItem.css';
 
 export default function PoliticalPartyItem({politicalParty}) {
+    console.log(politicalParty);
 
     return (
         <article className='political-party-item'>
@@ -8,7 +9,7 @@ export default function PoliticalPartyItem({politicalParty}) {
                 {politicalParty?.name}
             </div>
             <div className='party-contact'>
-                contact: {politicalParty?.user.name}
+                contact: {politicalParty?.user}
             </div>
         </article>
     )

@@ -7,7 +7,7 @@ import './CreatePoliticalParty.css'
 import FormLink from "../../components/ui/formLink/FormLink.jsx";
 import FormButton from "../../components/ui/formButton/FormButton.jsx";
 
-export default function CreatePoliticalParty() {
+export default function CreatePoliticalParty({toggleParty, party}) {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     // const auth = useAuth();
@@ -29,6 +29,7 @@ export default function CreatePoliticalParty() {
             if (response.statusCode === 200) {
                 navigate('/user/feed');
             }
+            toggleParty(!party)
         } catch (error) {
             console.error("Error Creating Political Party", error);
         } finally {

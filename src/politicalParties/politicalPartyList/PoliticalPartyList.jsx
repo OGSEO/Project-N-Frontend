@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
 import PoliticalPartyItem from "../politicalPartyItem/PoliticalPartyItem.jsx";
 
-export default function PoliticalPartyList() {
+export default function PoliticalPartyList({party}) {
     const [politicalParties, setPoliticalParties] = useState([]);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export default function PoliticalPartyList() {
         }
 
         void fetchPoliticalParties();
-    }, []);
+    }, [party]);
 
     return (
         <>

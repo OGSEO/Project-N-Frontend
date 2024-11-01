@@ -8,6 +8,7 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import SteunBox from "../../components/steunBox/SteunBox.jsx";
 import ApiService from "../../service/ApiService.js";
+import {generateDate} from "../../helpers/generateDate.js";
 
 export default function FeedIdeaItem({idea}) {
     const [showComments, setShowComments] = useState(false);
@@ -45,6 +46,8 @@ export default function FeedIdeaItem({idea}) {
 
     }, [idea.id]);
 
+
+
     ////////////////////////////////////////////////////////////
 
     // console.log(idea)
@@ -60,7 +63,7 @@ export default function FeedIdeaItem({idea}) {
                         <span className="username">{idea.user}</span>
                     </div>
                     <div>
-                        <span className="create-date">Gepost op: {idea.createdAt}</span>
+                        <span className="create-date">Gepost op: {generateDate(idea)}</span>
                     </div>
                 </div>
 

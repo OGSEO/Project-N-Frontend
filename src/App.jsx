@@ -15,9 +15,13 @@ import FeedPage from "./feeds/feedPage/FeedPage.jsx";
 import PostAvatarPage from "./pages/postAvatarPage/PostAvatarPage.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import FeedIdeaCommenting from "./feeds/feedIdeaCommenting/FeedIdeaCommenting.jsx";
+import {useState} from "react";
 
 
 function App() {
+
+    const [image, toggleImage] = useState(false);
+    const [party, toggleParty] = useState(false);
 
     return (
         <BrowserRouter>
@@ -28,12 +32,12 @@ function App() {
                     <Route path="login" element={<LoginPage/>}/>
 
                     <Route element={<ProtectedRoute/>}>
-                        <Route path="user" element={<RootLayout/>}>
+                        <Route path="user" element={<RootLayout image={image} party={party}/>}>
                             <Route index element={<ProfilePage/>}/>
                             <Route path="add-address" element={<AddressPage/>}/>
                             <Route path="edit-address" element={<AddressPage/>}/>
-                            <Route path=":userId/avatar" element={<PostAvatarPage/>}/>
-                            <Route path="new-political-party" element={<CreatePoliticalParty/>}/>
+                            <Route path=":userId/avatar" element={<PostAvatarPage image={image} toggleImage={toggleImage}/>}/>
+                            <Route path="new-political-party" element={<CreatePoliticalParty party={party} toggleParty={toggleParty}/>}/>
                             <Route path="ideas">
                                 <Route index element={<IdeasFromUserPage/>}/>
                                 <Route path="new-idea" element={<CreateIdea/>}/>
