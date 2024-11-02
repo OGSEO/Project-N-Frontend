@@ -3,7 +3,6 @@ import './CommentItem.css';
 export default function CommentItem({comment}) {
     console.log(comment)
     return (
-        <li>
             <div className="comment-item">
                 <div className="comment-item-name">
                     {comment.user.partyName ? (
@@ -16,6 +15,5 @@ export default function CommentItem({comment}) {
                     {comment.content}
                 </div>
             </div>
-        </li>
     )
 }

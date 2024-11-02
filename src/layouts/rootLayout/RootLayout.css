@@ -1,4 +1,7 @@
-.main-container {
+.loggedin-page-container {
+    margin-top: 24px;
+    height: calc(100vh - 24px);
     display: flex;
+    align-items: flex-start;
     gap: 24px;
 }

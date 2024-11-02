@@ -22,7 +22,6 @@ export default function PoliticalPartyList({party}) {
 
     return (
         <>
-            <h1>Politieke Partijen</h1>
             {politicalParties.length === 0 ? (
                 <p>Er zijn nog geen politieke partijen aangemeld</p>
             ) : (<>

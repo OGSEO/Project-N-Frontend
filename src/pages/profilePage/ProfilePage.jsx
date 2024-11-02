@@ -1,13 +1,15 @@
 import ApiService from "../../service/ApiService.js";
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useContext, useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import './ProfilePage.css'
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 export default function ProfilePage() {
 
     const [userInfo, setUserInfo] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
 
     const fetchUserInfo = async () => {
 
@@ -35,30 +37,42 @@ export default function ProfilePage() {
 
     return (
         <div className="profile-page-container">
-
+            <div className='profile-page-title'>
+                <span>Uw profiel</span>
+            </div>
+            {/*<div className='profile-page-intro'>*/}
+            {/*    <p>Wij delen uw gegevens met niemand!</p>*/}
+            {/*</div>*/}
             {error ? (
                 <p>{error}</p>
             ) : (
                 <div className="profile-info">
-                    <span className="profile-username">{userInfo.name} </span>
-                    <span><strong>Email: </strong> {userInfo.email} </span>
-                    <span><strong>Role: </strong> {userInfo.role} </span>
-                    <span className="profile-title">Adres: </span>
-                    {userInfo.address ? (
-                        <div>
-                            <p><strong>Street: </strong>{userInfo.address.street}</p>
-                            <p><strong>Zip Code: </strong>{userInfo.address.zipCode}</p>
-                            <p><strong>City: </strong>{userInfo.address.city}</p>
-                            <p><strong>Country: </strong>{userInfo.address.country}</p>
-                        </div>
-                    ) : (
-                        <div>
-                            <p>Vul je adres in!</p>
+                    <div className="profile-username">
+                        <span>Hallo, {userInfo.name}</span>
+                    </div>
+                    <div className='user-info-title'>
+                        <span>Uw Email:</span>
+                    </div>
+                    <span className='user-info-content'>{userInfo.email}</span>
+                    <div className='user-info-title'>
+                        <span>Uw Adres:</span>
+                    </div>
+
+
+
+                    {userInfo.address && (
+                        <div className='user-info-content'>
+                            <p><strong>Straat: </strong>{userInfo.address.street}</p>
+                            <p><strong>Postcode: </strong>{userInfo.address.zipCode}</p>
+                            <p><strong>Stad: </strong>{userInfo.address.city}</p>
+                            <p><strong>Land: </strong>{userInfo.address.country}</p>
                         </div>
                     )}
                     <button className="profile-button" onClick={handleAddressClick}>
-                        {userInfo.address ? "Edit Address" : "Add Address"}
+                        {userInfo.address ? "Edit je adres" : "Vul je adres in"}
                     </button>
+
+                    <Link to={`/user/${user.id}/avatar`}>Verander uw profiel foto!</Link>
                 </div>
             )}
         </div>

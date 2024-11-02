@@ -4,19 +4,18 @@
 }
 
 .navbar-cta-box button {
-    background-color: blue;
-    color: #fff;
+    background-color: var(--citizen);
+    color: var(--white);
     font-size: 18px;
     width: 100%;
     border-radius: 8px;
     text-decoration: none;
     padding: 8px;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 3px solid var(--citizen);
 }
 
 .navbar-cta-box button:hover {
-    background-color: #fff;
-    color: blue;
-    border: 1px solid blue;
+    background-color: var(--white);
+    color: var(--citizen);
 }

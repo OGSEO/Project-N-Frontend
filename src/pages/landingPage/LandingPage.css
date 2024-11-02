@@ -1,0 +1,13 @@
+.landing-page-container {
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+}
+.choice-box {
+    display: flex;
+    gap: 128px;
+
+}

@@ -83,15 +83,16 @@ export default function FeedIdeaItem({idea}) {
 
                     <div className="comment-box">
                         {comments.length > 0 ? (
-                            <button className="comment-box-button" onClick={() => setShowComments(!showComments)}>
+                            <button className="comment-box-button" onClick={() =>
+                                setShowComments(!showComments)}>
                                 {showComments ? (
-                                    <span>Hide {comments.length} commentaren</span>
+                                    <span>Verberg {comments.length} opmerkingen</span>
                                 ) : (
-                                   <span>Show {comments.length} commentaren</span>
+                                   <span>Laat {comments.length} opmerkingen</span>
                                 )}
                             </button>
                         ) :(
-                            <span>0 opmerkingen</span>
+                            <span className='no-comments-title'>0 opmerkingen</span>
                         )}
 
                     </div>

@@ -6,12 +6,10 @@ import SidebarRight from "../../components/sidebarRight/SidebarRight.jsx";
 export default function RootLayout({image, party}) {
 
     return (
-        // <main className="user-main-page">
-        <>
+        <div className='loggedin-page-container'>
             <SidebarNav image={image}/>
             <Outlet/>
             <SidebarRight party={party}/>
-        </>
-        // </main>
+        </div>
     )
 }

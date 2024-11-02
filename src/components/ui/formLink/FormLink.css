@@ -1,7 +1,7 @@
 .form-link {
     background-color: transparent;
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--citizen);
     border: 1px solid transparent;
     border-radius: 4px;
     cursor: pointer;
@@ -11,6 +11,6 @@
 }
 
 .form-link:hover {
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--citizen);
     border-radius: 4px;
 }

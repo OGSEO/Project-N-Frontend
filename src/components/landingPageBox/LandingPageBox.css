@@ -1,0 +1,78 @@
+.landing-page-box {
+    background-color: var(--white);
+    border-radius: 8px;
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px;
+}
+
+.box-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.box-sub-title {
+    font-size: 20px;
+}
+
+.box-cta {
+    margin: 32px 0 16px 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    background-color: var(--white);
+    text-decoration: none;
+    padding: 8px 0;
+    width: 300px;
+    transition: 0.2s ease;
+}
+
+.box-cta-politician {
+    border: 3px solid var(--politician);
+    color: var(--politician);
+}
+
+.box-cta-politician:hover {
+    background-color: var(--politician);
+    color: var(--white);
+}
+
+.box-cta-citizen {
+    border: 3px solid var(--citizen);
+    color: var(--citizen);
+
+}
+
+.box-cta-citizen:hover {
+    background-color: var(--citizen);
+    color: var(--white);
+}
+
+.landing-page-box p {
+    margin: 0;
+}
+
+.box-login-citizen,
+.box-login-politician {
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.box-login-citizen:hover,
+.box-login-politician:hover {
+     font-size: 18px;
+     text-decoration: underline;
+     font-weight: bold;
+ }
+
+.box-login-citizen:hover {
+    color: var(--citizen);
+}
+
+.box-login-politician:hover {
+    color: var(--politician);
+}

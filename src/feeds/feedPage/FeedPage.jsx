@@ -4,6 +4,7 @@ import ApiService from "../../service/ApiService.js";
 import FeedIdeaItem from "../feedIdeaItem/FeedIdeaItem.jsx";
 import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import { GiSmart } from "react-icons/gi";
 
 export default function FeedPage() {
     const [ideas, setIdeas] = useState([]);
@@ -26,27 +27,33 @@ export default function FeedPage() {
     }, []);
 
     if (!ideas) {
-        return <div className="feed-page-container"><span className="load-message">Ideeen aan het laden...</span></div>
+        return <div className="feed-page-container-list"><span className="load-message">Ideeen aan het laden...</span></div>
     }
 
     return (
-        <>
-            {ideas.length > 0 ? (
-                <div className="feed-page-container">
-                    {ideas.map((idea) => (
-                        <FeedIdeaItem idea={idea} key={idea.id}/>
-                    ))}
-                </div>
-            ) : (
-                <div className="feed-page-container-no-content">
-                    <h2>Er zijn nog geen ideeen!</h2>
-                    {!isPolitician && (
-                        <Link to="/user/ideas/new-idea">
-                            <button>Plaats als eerste een idee!</button>
-                        </Link>
-                    )}
-                </div>
-            )}
-        </>
+        <div className='feed-page-container'>
+            <div className='feed-page-title'>
+                <span>Ideeen van burgers</span>
+            </div>
+            <div className='feed-page-box'>
+                {ideas.length > 0 ? (
+                    <div className="feed-page-container-list">
+                        {ideas.map((idea) => (
+                            <FeedIdeaItem idea={idea} key={idea.id}/>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="feed-page-container-no-content">
+                        <GiSmart className='no-content-icon'/>
+                            <span className='no-content-title' >Er zijn nog geen ideeen geplaatst!</span>
+                            {!isPolitician && (
+                                <Link className='no-content-cta' to="/user/ideas/new-idea">
+                                    <span>Plaats als eerste een idee!</span>
+                                </Link>
+                            )}
+                    </div>
+                )}
+            </div>
+        </div>
     )
 }

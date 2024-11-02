@@ -1,10 +1,17 @@
+.registration-page-container {
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 h2 {
     color: black;
     font-size: 2rem;
     margin-bottom: 32px;
 }
 
-.register-container {
+.registration-form {
     align-self: center;
     background: #FFF;
     padding: 20px;
@@ -21,28 +28,61 @@ h2 {
     gap: 15px;
 }
 
+.register-link p {
+    margin: 0;
+}
+
 .btn {
-    padding: 15px 0;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: 600;
-    background: red;
-    border-radius: 6px;
-    color: #fff;
-    cursor: pointer;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 8px 0;
+    margin: 16px 0;
     transition: 0.2s ease;
 }
 
+.btn-citizen {
+    background-color: var(--citizen);
+    border: 3px solid var(--citizen);
+}
+
+.btn-politician {
+    background-color: var(--politician);
+    border: 3px solid var(--politician);
+}
+
 .btn:hover {
-    background: darkred;
+    background-color: var(--white);
 }
 
-.btn-link {
+.btn-citizen:hover {
+    color: var(--citizen);
+}
+
+.btn-politician:hover {
+    color: var(--politician);
+}
+
+.box-login-citizen,
+.box-login-politician {
+    font-size: 18px;
     text-decoration: none;
-    color: lightcoral;
 }
 
-.btn-link:hover {
+.box-login-citizen:hover,
+.box-login-politician:hover {
+    font-size: 18px;
     text-decoration: underline;
+    font-weight: bold;
+}
+
+.box-login-citizen:hover {
+    color: var(--citizen);
+}
+
+.box-login-politician:hover {
+    color: var(--politician);
 }

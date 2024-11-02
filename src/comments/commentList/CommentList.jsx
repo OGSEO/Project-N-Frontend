@@ -33,11 +33,9 @@ export default function CommentList({comments}) {
         <>
             {comments.length > 0 ? (
                 <div className="all-comments">
-                    <ul>
                         {comments.map((comment) => (
                             <CommentItem key={comment.id} comment={comment}/>
                         ))}
-                    </ul>
                 </div>
             ) : null
             }

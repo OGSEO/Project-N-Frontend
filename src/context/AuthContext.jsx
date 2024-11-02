@@ -52,7 +52,7 @@ function AuthContextProvider({children}) {
             status: 'done',
         } );
 
-        navigate('/login')
+        navigate('/')
         console.log( 'Gebruiker is uitgelogd!' );
     }
 

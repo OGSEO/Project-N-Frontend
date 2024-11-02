@@ -1,4 +1,4 @@
-.feed-page-container  {
+.idea-page-container {
     height: 50%;
     width: 600px;
     border-radius: 8px;
@@ -7,7 +7,7 @@
     justify-content: flex-start;
 }
 
-.feed-page-title {
+.idea-page-title {
     height: 86px;
     font-size: 32px;
     font-weight: bold;
@@ -18,7 +18,7 @@
     margin-bottom: 8px;
 }
 
-.feed-page-box {
+.idea-page-box {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -26,12 +26,12 @@
     align-items: center;
 }
 
-.feed-page-container-list {
+.idea-page-container-list {
     background-color: transparent;
 }
 
-.feed-page-container-no-content {
-    width:600px;
+.idea-page-container-no-content {
+    width: 600px;
     background-color: var(--white);
     display: flex;
     flex-direction: column;

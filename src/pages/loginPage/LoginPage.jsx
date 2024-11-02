@@ -1,20 +1,24 @@
 import './LoginPage.css'
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {TextField} from "../../components/textField/TextField.jsx";
 import ApiService from "../../service/ApiService.js";
 import {useForm} from "react-hook-form";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
+
 // import axios from "axios";
 
 function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, toggleError] = useState();
-    const { login } = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
+    const params = useParams();
     const navigate = useNavigate();
 
-    const { register,
-        handleSubmit, formState: {errors},} =useForm({
+    const {
+        register,
+        handleSubmit, formState: {errors},
+    } = useForm({
         defaultValues: {
             email: '',
             password: '',
@@ -50,13 +54,11 @@ function Login() {
             // geef de JWT token aan de login-functie van de context mee
             login(response);
 
-        } catch(e) {
+        } catch (e) {
             console.error(e);
             toggleError(true);
         }
     }
-
-
 
 
     // const onLoginHandler= async (data) => {
@@ -81,36 +83,50 @@ function Login() {
     //     if(auth.isAuthenticated) navigate('/');
     // }, [navigate, auth]);
 
+    let submitBtn;
+    let classesLogin;
+
+    if (params.role === 'CITIZEN') {
+        submitBtn = "btn-citizen"
+        classesLogin = "box-login-citizen box-login-citizen:hover"
+    }
+    if (params.role === 'POLITICIAN') {
+        submitBtn = "btn-politician"
+        classesLogin = "box-login-politician box-login-politician:hover"
+    }
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
-                <TextField
-                    type="email"
-                    label="Email"
-                    error={errors.email}
-                    {...register('email', {
-                        required: "This field is required.",
-                        pattern: {
-                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            message: "Incorrect email format.",
-                        }
-                    })}
-                />
-                <TextField
-                    type="password"
-                    label="Password"
-                    error={errors.password}
-                    {...register('password', {
-                        required: "This field is required."
-                    })}
-                />
-                <div className="register-link">
-                    <button className="btn">{isLoading ? "Submitting..." : "Log In"}</button>
-                    <small><Link className="btn-link" to="/">Heb je nog geen account?</Link></small>
-                </div>
-            </form>
+        <div className='login-page-container'>
+            <div className="login-form">
+                <h2>Login</h2>
+                <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit)}>
+                    <TextField
+                        type="email"
+                        label="Email"
+                        error={errors.email}
+                        {...register('email', {
+                            required: "Uw email is verplicht.",
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Vul een geldige email in.",
+                            }
+                        })}
+                    />
+                    <TextField
+                        type="password"
+                        label="Password"
+                        error={errors.password}
+                        {...register('password', {
+                            required: "Uw password is verplicht."
+                        })}
+                    />
+                    <div className="register-link">
+                        <button className={`btn ${submitBtn}`}>{isLoading ? "Aan het werk..." : "Log In"}</button>
+                        <p>-of-</p>
+                        <Link className={classesLogin} to="/">Heb je nog geen account?</Link>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

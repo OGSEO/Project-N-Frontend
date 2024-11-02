@@ -1,15 +1,15 @@
 .form-button {
-    background-color: var(--primary-color);
+    background-color: var(--citizen);
     color: var(--white);
     padding: 8px 16px;
     border-radius: 4px;
     font-weight: 600;
     font-size: 16px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--citizen);
     cursor: pointer;
 }
 
 .form-button:hover {
     background-color: var(--white);
-    color: var(--primary-color);
+    color: var(--citizen);
 }

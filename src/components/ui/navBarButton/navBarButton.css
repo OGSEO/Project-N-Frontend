@@ -1,19 +1,33 @@
 .navbar-button-box {
-    background-color: #fff;
-    padding: 4px 16px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    text-align: center;
+    padding: 16px 0;
+    cursor: pointer;
+    font-size: 18px;
+    border-bottom: 1px solid var(--border-box);
 }
 
 .navbar-button-box button {
-    background-color: #fff;
+    background-color: transparent;
     font-size: 18px;
     width: 100%;
-    border-radius: 4px;
     text-decoration: none;
-    padding: 8px;
+    padding: 8px 0;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 0;
 }
 
-.navbar-button-box button:hover {
-    background-color: #e8e8e8;
+.button-icon {
+    font-size: 22px;
+    margin-top: 6px;
+}
+
+.navbar-button-box:hover{
+    color: var(--citizen);
+}
+
+.navbar-button-box:hover button {
+    color: var(--citizen);
 }

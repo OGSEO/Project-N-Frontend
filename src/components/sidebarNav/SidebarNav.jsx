@@ -7,9 +7,12 @@ import NavBarCta from "../ui/navBarCta/NavBarCta.jsx";
 import NavBarLink from "../ui/navBarLink/NavBarLink.jsx";
 import AvatarBlankImg from '../../assets/avatar-blank.png' ;
 import {Link} from "react-router-dom";
+import { FaHome } from "react-icons/fa";
+import { FaIdCard } from "react-icons/fa6";
+import { GiSmart } from "react-icons/gi";
+import { IoLogOutSharp } from "react-icons/io5";
 
 export default function SidebarNav({image}) {
-    // const {logout, user, avatarUrl} = useContext(AuthContext);
     const {logout, user} = useContext(AuthContext);
     const [profileImage, setProfileImage] = useState('')
 
@@ -17,7 +20,6 @@ export default function SidebarNav({image}) {
     console.log(user);
 
     useEffect(() => {
-        console.log('toggle mij')
         setProfileImage(user.imgUrl)
     }, [image]);
 
@@ -27,10 +29,6 @@ export default function SidebarNav({image}) {
             logout();
         }
     }
-
-    // useEffect(() => {
-    //
-    // }, [avatarUrl]);
 
 
     return (
@@ -84,13 +82,12 @@ export default function SidebarNav({image}) {
             )}
 
             <div className="sidebar-nav-menu">
-                <NavBarLink label="Home" linkTo="/user/feed"/>
-                <NavBarLink label="Mijn Account" linkTo="/user"/>
-                <NavBarLink label="Mijn Avatar" linkTo={`/user/${user.id}/avatar`}/>
+                <NavBarLink label="Alle Ideeen" linkTo="/user/feed" icon={<FaHome/>} />
+                <NavBarLink label="Mijn Account" linkTo="/user" icon={<FaIdCard />} />
                 {!isPolitician && (
-                    <NavBarLink label="Mijn Ideeen" linkTo="/user/ideas"/>
+                    <NavBarLink label="Mijn Ideeen" linkTo="/user/ideas" icon={<GiSmart />} />
                 )}
-                <NavBarButton label="Uitloggen" type={'button'} onClick={logouthandler}/>
+                <NavBarButton label="Uitloggen" type={'button'} onClick={logouthandler} icon={<IoLogOutSharp />}/>
             </div>
         </aside>
     )

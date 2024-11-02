@@ -5,27 +5,25 @@
     flex-direction: column;
     gap: 16px;
     border-radius: 8px;
-    padding: 8px 0;
-    border: 1px solid #E8E8E8;
+    min-height: 50%;
 }
 
 .sidebar-avatar {
+    background-color: var(--citizen);
+    border-radius: 8px 8px 0 0;
     text-align: center;
-    padding-top: 32px;
-    padding-bottom: 16px;
+    padding: 32px 0;
 }
 
 .sidebar-avatar img {
-    border: 1px solid var(--black);
+    border: 4px solid var(--white);
     border-radius: 100%;
     height: 100px;
     width:100px;
 }
 
 .sidebar-username-box {
-    padding: 24px 0;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    padding: 12px 0;
 }
 
 .sidebar-username {
@@ -39,6 +37,12 @@
     text-align: center;
     width: 100%;
     font-size: 18px;
+}
+
+.sidebar-cta-box {
+    padding: 24px 0;
+    border-top: 1px solid var(--border-box);
+    border-bottom: 1px solid var(--border-box);
 }
 
 

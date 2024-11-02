@@ -46,7 +46,7 @@ export default function RegisterPage() {
         try {
             const response = await ApiService.registerUser(sendData)
             console.log(response);
-            navigate("/login");
+            navigate(`/login/${params.role}`);
         } catch
             (error) {
             console.log(error);
@@ -59,50 +59,65 @@ export default function RegisterPage() {
         console.log(err);
     }
 
+    let submitBtn;
+    let classesLogin;
+
+    if (params.role === 'CITIZEN') {
+        submitBtn = "btn-citizen"
+        classesLogin = "box-login-citizen box-login-citizen:hover"
+    }
+    if (params.role === 'POLITICIAN') {
+        submitBtn = "btn-politician"
+        classesLogin = "box-login-politician box-login-politician:hover"
+    }
+
     return (
-        <div className="register-container">
-            <h2>Registreren</h2>
-            <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
-                <TextField
-                    label="Name"
-                    error={errors.name}
-                    {...register('name', {
-                        minLength: {
-                            value: 6,
-                            message: "Must be min 6 characters"
-                        },
-                        maxLength: {
-                            value: 20,
-                            message: "Must be max 20 characters"
-                        },
-                        required: "This field is required."
-                    })}
-                />
-                <TextField
-                    type="email"
-                    label="Email"
-                    error={errors.email}
-                    {...register('email', {
-                        required: "This field is required.",
-                        pattern: {
-                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            message: "Incorrect email format.",
-                        }
-                    })}
-                />
-                <TextField
-                    type="password"
-                    label="Password"
-                    error={errors.password}
-                    {...register('password', {
-                        required: "This field is required."
-                    })}
-                />
-                <div className="register-link">
-                    <button className="btn">{loading ? "Submitting..." : "Registreren"}</button>
-                    <small><Link className="btn-link" to="/login">Heb je al een account?</Link></small>
-                </div>
-            </form>
+        <div className='registration-page-container'>
+            <div className="registration-form">
+                < h2> Registreren < /h2>
+                <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
+                    <TextField
+                        label="Naam"
+                        error={errors.name}
+                        {...register('name', {
+                            minLength: {
+                                value: 6,
+                                message: "Uw naam moet minimaal 6 characters bevatten"
+                            },
+                            maxLength: {
+                                value: 20,
+                                message: "Uw naam mag max 20 characters bevatten"
+                            },
+                            required: "Uw naam is verplicht."
+                        })}
+                    />
+                    <TextField
+                        type="email"
+                        label="Email"
+                        error={errors.email}
+                        {...register('email', {
+                            required: "Uw email is verplicht.",
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Vul een geldige email in.",
+                            }
+                        })}
+                    />
+                    <TextField
+                        type="password"
+                        label="Paswoord"
+                        error={errors.password}
+                        {...register('password', {
+                            required: "Uw password is verplicht."
+                        })}
+                    />
+                    <div className="register-link">
+                        <button className={`btn ${submitBtn}`}>{loading ? "Aan het werk..." : "Registreren"}</button>
+                        <p>-of-</p>
+                        <Link className={classesLogin} to={`/login/${params.role}`}>Heb je al een account?</Link>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

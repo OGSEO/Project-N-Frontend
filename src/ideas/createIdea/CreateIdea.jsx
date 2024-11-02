@@ -11,9 +11,11 @@ export default function CreateIdea() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    const {register,
+    const {
+        register,
         handleSubmit,
-        formState: {errors}} = useForm({
+        formState: {errors}
+    } = useForm({
             defaultValues: {
                 title: '',
                 description: ''
@@ -39,8 +41,17 @@ export default function CreateIdea() {
 
     return (
         <div className='create-idea-container'>
-            <h1>Deel uw idee met de stad!</h1>
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='create-idea-title'>
+                <span>Deel uw idee met de stad!</span>
+            </div>
+            <div className='create-idea-intro'>
+                <p>Heeft u een idee? En u wilt deze delen met uw medeburgers om extra draagvlak te verkrijgen?
+                    Of wilt u uw idee onder de ogen van politici krijgen? Deel snel uw idee zodat al deze dingen
+                door een druk op de knop mogelijk zijn.</p>
+            </div>
+            <div className='create-idea-form'>
+                <p>Wat is uw idee?</p>
+                <form autoComplete='false' onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <TextField
                             label="Titel"
@@ -63,6 +74,7 @@ export default function CreateIdea() {
                         <FormButton type='submit' onSubmit={onSubmit}>Deel Idee</FormButton>
                     </div>
                 </form>
+            </div>
         </div>
     )
 

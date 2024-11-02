@@ -10,10 +10,11 @@
 }
 
 .create-party-container form {
-    width: calc(100% - 4px);
+    width: 100%;
 }
 
 .buttons-box {
+    padding: 16px 0;
     display: flex;
     justify-content: flex-end;
     gap: 16px;

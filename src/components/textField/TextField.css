@@ -13,7 +13,7 @@
 
 input {
     height: 55px;
-    width: calc(100% - 16px);
+    width: 100%;
     /*padding: 0 15px;*/
     border: 1px solid #cccccc;
     border-radius: 6px;
@@ -24,7 +24,7 @@ input {
 
 input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--citizen);
 }
 
 ::placeholder {
