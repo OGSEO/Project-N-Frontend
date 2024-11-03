@@ -3,6 +3,8 @@ import {useContext, useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import './ProfilePage.css'
 import {AuthContext} from "../../context/AuthContext.jsx";
+import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
+import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
 
 export default function ProfilePage() {
 
@@ -36,13 +38,10 @@ export default function ProfilePage() {
     }
 
     return (
-        <div className="profile-page-container">
-            <div className='profile-page-title'>
-                <span>Uw profiel</span>
-            </div>
-            {/*<div className='profile-page-intro'>*/}
-            {/*    <p>Wij delen uw gegevens met niemand!</p>*/}
-            {/*</div>*/}
+        <ContainerBox useCase='main'>
+            <TitleBox>
+                Uw profiel
+            </TitleBox>
             {error ? (
                 <p>{error}</p>
             ) : (
@@ -75,6 +74,6 @@ export default function ProfilePage() {
                     <Link to={`/user/${user.id}/avatar`}>Verander uw profiel foto!</Link>
                 </div>
             )}
-        </div>
+        </ContainerBox>
     )
 }

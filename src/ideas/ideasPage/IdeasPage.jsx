@@ -4,7 +4,9 @@ import ApiService from "../../service/ApiService.js";
 import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import IdeaItem from "../ideaItem/IdeaItem.jsx";
-import {GiSmart} from "react-icons/gi";
+import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
+import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
+import NoIdeasYet from "../../components/noIdeasYet/NoIdeasYet.jsx";
 
 export default function IdeasPage() {
     const [ideas, setIdeas] = useState([]);
@@ -30,28 +32,24 @@ export default function IdeasPage() {
     }
 
     return (
-        <div className='idea-page-container'>
-            <div className='idea-page-title'>
-                <span>Mijn ideeen</span>
-            </div>
+        <ContainerBox useCase='main'>
+            <TitleBox>
+                Mijn ideeen
+            </TitleBox>
             <div className='idea-page-box'>
                 {ideas.length > 0 ? (
-                    <div className="idea-page-container-list">
+                    <ul className="idea-page-container-list">
                         {ideas.map((idea) => (
-                            <IdeaItem key={idea.id} idea={idea}/>
+                            <IdeaItem idea={idea} key={idea.id}/>
                         ))}
-                    </div>
+                    </ul>
                 ) : (
-                    <div className="idea-page-container-no-content">
-                        <GiSmart className='no-content-icon'/>
-                        <span className='no-content-title'>Je hebt nog geen ideeen geplaatst!</span>
-                        <Link className='no-content-cta' to="/user/ideas/new-idea">
-                            <span>Plaats je eigen idee!</span>
-                        </Link>
-
-                    </div>
+                    <NoIdeasYet
+                        linkText='Plaats je eigen idee!'>
+                        Je hebt nog geen idee geplaatst!
+                    </NoIdeasYet>
                 )}
             </div>
-        </div>
+        </ContainerBox>
     )
 }

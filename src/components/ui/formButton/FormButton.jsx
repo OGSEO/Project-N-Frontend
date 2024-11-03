@@ -1,8 +1,8 @@
 import './FormButton.css';
 
-export default function FormButton({type, children, onSubmit }) {
+export default function FormButton({ children, handler }) {
     return (
-        <button className='form-button' type={type} onSubmit={onSubmit}>
+        <button className='form-button' type="submit" onClick={handler}>
             {children}
         </button>
     )

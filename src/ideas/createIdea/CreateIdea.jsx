@@ -6,6 +6,8 @@ import {useForm} from "react-hook-form";
 import './CreateIdea.css';
 import FormButton from "../../components/ui/formButton/FormButton.jsx";
 import FormLink from "../../components/ui/formLink/FormLink.jsx";
+import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
+import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
 
 export default function CreateIdea() {
     const [isLoading, setIsLoading] = useState(false);
@@ -40,10 +42,10 @@ export default function CreateIdea() {
     }
 
     return (
-        <div className='create-idea-container'>
-            <div className='create-idea-title'>
-                <span>Deel uw idee met de stad!</span>
-            </div>
+        <ContainerBox useCase='main'>
+            <TitleBox colorType='citizen'>
+                Deel uw idee met de stad!
+            </TitleBox>
             <div className='create-idea-intro'>
                 <p>Heeft u een idee? En u wilt deze delen met uw medeburgers om extra draagvlak te verkrijgen?
                     Of wilt u uw idee onder de ogen van politici krijgen? Deel snel uw idee zodat al deze dingen
@@ -75,7 +77,7 @@ export default function CreateIdea() {
                     </div>
                 </form>
             </div>
-        </div>
+        </ContainerBox>
     )
 
 }

@@ -11,7 +11,8 @@ export default function IdeaItem({idea}) {
     const [showComments, setShowComments] = useState(false);
 
     async function editIdeaHandler() {
-        navigate("{${idea.id}/edit}");
+        console.log(idea.id);
+        navigate(`${idea.id}/edit`);
     }
 
     async function deleteIdeaHandler() {
@@ -25,8 +26,7 @@ export default function IdeaItem({idea}) {
     console.log(idea)
 
     return (
-        <>
-            <div className="idea-item-container">
+            <li className="idea-item-container">
                 <div className="idea-item-title-box">
                     <div className="idea-item-title">
                         {idea.title}
@@ -47,12 +47,10 @@ export default function IdeaItem({idea}) {
                 </div>
 
                 <div className='idea-item-buttons-box'>
-                    <FormButton type='button' onSubmit={editIdeaHandler}>Edit</FormButton>
-                    <FormButton type='button' onSubmit={deleteIdeaHandler}>Delete</FormButton>
+                    <FormButton handler={editIdeaHandler}>Edit</FormButton>
+                    <FormButton onSubmit={deleteIdeaHandler}>Delete</FormButton>
                 </div>
-            </div>
-
-            {showComments && <CommentList idea={idea}/>}
-        </>
+                {showComments && <CommentList idea={idea}/>}
+            </li>
     )
 }

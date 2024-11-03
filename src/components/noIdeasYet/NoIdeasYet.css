@@ -1,0 +1,30 @@
+.no-ideas-container {
+    width: 600px;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 128px 0;
+}
+
+.no-content-icon {
+    font-size: 100px;
+}
+
+.no-content-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.no-content-cta {
+    font-size: 18px;
+    color: var(--citizen);
+    text-decoration: none;
+}
+
+.no-content-cta:hover {
+    text-decoration: underline;
+}

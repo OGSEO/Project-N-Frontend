@@ -1,16 +1,18 @@
 import './SidebarRight.css';
 import PoliticalPartyList from "../../politicalParties/politicalPartyList/PoliticalPartyList.jsx";
+import TitleBox from "../ui/titleBox/TitleBox.jsx";
+import ContainerBox from "../ui/containerBox/ContainerBox.jsx";
 
 export default function SidebarRight({party}) {
 
     return (
-        <div className='sidebar-right-container'>
-            <div className='sidebar-right-title-box'>
-                <span>Politieke Partijen</span>
-            </div>
+        <ContainerBox useCase='sidebar'>
+            <TitleBox>
+                Politieke Partijen
+            </TitleBox>
             <div className='sidebar-right-box'>
                 <PoliticalPartyList party={party} />
             </div>
-        </div>
+        </ContainerBox>
     )
 }

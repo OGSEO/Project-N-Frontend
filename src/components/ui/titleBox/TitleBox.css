@@ -1,0 +1,17 @@
+.title-box {
+    height: 86px;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+    color: var(--white);
+    padding: 24px;
+    margin-bottom: 8px;
+}
+
+.citizen {
+    background-color: var(--citizen);
+}
+
+.politician {
+    background-color: var(--politician);
+}

@@ -1,27 +1,4 @@
-.sidebar-right-container {
-    background-color: #fff;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border-radius: 8px;
-    min-height: 50%;
-}
-
-.sidebar-right-title-box {
-    height: 86px;
-    font-size: 32px;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 8px 8px 0 0;
-    background-color: var(--citizen);
-    color: var(--white);
-    padding: 24px;
-
-}
-
 .sidebar-right-box {
-    padding: 24px;
-    text-align: center;
+    background-color: var(--background);
 }
 

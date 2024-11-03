@@ -11,6 +11,7 @@ import { FaHome } from "react-icons/fa";
 import { FaIdCard } from "react-icons/fa6";
 import { GiSmart } from "react-icons/gi";
 import { IoLogOutSharp } from "react-icons/io5";
+import ContainerBox from "../ui/containerBox/ContainerBox.jsx";
 
 export default function SidebarNav({image}) {
     const {logout, user} = useContext(AuthContext);
@@ -29,11 +30,13 @@ export default function SidebarNav({image}) {
             logout();
         }
     }
+    console.log(image);
+    console.log(profileImage);
 
 
     return (
-        <aside className='sidebar-nav-container'>
-            {image ? (
+        <ContainerBox useCase='sidebar'>
+            {profileImage ? (
                 <div className="sidebar-avatar">
                     <div>
                         <img src={profileImage} alt={`Een profielfoto van ${user.username}`}/>
@@ -89,6 +92,6 @@ export default function SidebarNav({image}) {
                 )}
                 <NavBarButton label="Uitloggen" type={'button'} onClick={logouthandler} icon={<IoLogOutSharp />}/>
             </div>
-        </aside>
+        </ContainerBox>
     )
 }

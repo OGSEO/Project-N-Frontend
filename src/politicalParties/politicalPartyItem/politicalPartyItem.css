@@ -1,13 +1,39 @@
 .political-party-item {
+    background-color: var(--white);
+    border-radius: 4px;
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+}
+
+.political-party-item-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--politician);
+}
+
+.political-party-item-info-box {
     display: flex;
     flex-direction: column;
-    gap:8px;
+    gap: 8px;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .party-name {
-    font-size: 24px;
+    font-size: 20px;
 }
 
-.party-contact {
-    font-size: 18px;
+.party-cta-link {
+    background-color: var(--white);
+    color: var(--politician);
+    padding: 6px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.party-cta-link:hover {
+    font-weight: bold;
 }

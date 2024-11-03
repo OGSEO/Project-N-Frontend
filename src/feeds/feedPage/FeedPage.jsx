@@ -2,9 +2,10 @@ import './FeedPage.css'
 import {useContext, useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
 import FeedIdeaItem from "../feedIdeaItem/FeedIdeaItem.jsx";
-import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import { GiSmart } from "react-icons/gi";
+import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
+import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
+import NoIdeasYet from "../../components/noIdeasYet/NoIdeasYet.jsx";
 
 export default function FeedPage() {
     const [ideas, setIdeas] = useState([]);
@@ -31,10 +32,10 @@ export default function FeedPage() {
     }
 
     return (
-        <div className='feed-page-container'>
-            <div className='feed-page-title'>
-                <span>Ideeen van burgers</span>
-            </div>
+        <ContainerBox useCase='main'>
+            <TitleBox>
+                Ideeen van burgers
+            </TitleBox>
             <div className='feed-page-box'>
                 {ideas.length > 0 ? (
                     <div className="feed-page-container-list">
@@ -43,17 +44,12 @@ export default function FeedPage() {
                         ))}
                     </div>
                 ) : (
-                    <div className="feed-page-container-no-content">
-                        <GiSmart className='no-content-icon'/>
-                            <span className='no-content-title' >Er zijn nog geen ideeen geplaatst!</span>
-                            {!isPolitician && (
-                                <Link className='no-content-cta' to="/user/ideas/new-idea">
-                                    <span>Plaats als eerste een idee!</span>
-                                </Link>
-                            )}
-                    </div>
+                    <NoIdeasYet
+                        linkText='Plaats als eerste idee!'>
+                        Er zijn nog geen ideeen geplaatst!
+                    </NoIdeasYet>
                 )}
             </div>
-        </div>
+        </ContainerBox>
     )
 }
