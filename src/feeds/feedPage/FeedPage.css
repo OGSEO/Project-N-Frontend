@@ -1,11 +1,3 @@
-.feed-page-box {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
 .load-message {
 
 }

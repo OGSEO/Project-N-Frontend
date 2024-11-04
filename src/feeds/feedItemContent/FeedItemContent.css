@@ -1,0 +1,20 @@
+.content-box {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-bottom: 1px solid #E8E8E8;
+    gap: 4px;
+}
+
+.content-box div {
+    text-align: left;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 20px;
+}

@@ -1,15 +1,31 @@
 .form-button {
-    background-color: var(--citizen);
     color: var(--white);
     padding: 8px 16px;
     border-radius: 4px;
     font-weight: 600;
     font-size: 16px;
-    border: 1px solid var(--citizen);
     cursor: pointer;
 }
 
 .form-button:hover {
     background-color: var(--white);
+}
+
+.default {
+    background-color: var(--citizen);
+    border: 1px solid var(--citizen);
+}
+
+.default:hover {
     color: var(--citizen);
+}
+
+
+.delete {
+    background-color: var(--delete-btn);
+    border: 1px solid var(--delete-btn);
+}
+
+.delete:hover {
+    color: var(--delete-btn);
 }

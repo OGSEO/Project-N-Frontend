@@ -48,7 +48,7 @@ export default function IdeaItem({idea}) {
 
                 <div className='idea-item-buttons-box'>
                     <FormButton handler={editIdeaHandler}>Edit</FormButton>
-                    <FormButton onSubmit={deleteIdeaHandler}>Delete</FormButton>
+                    <FormButton onSubmit={deleteIdeaHandler} btnColor='delete'>Delete</FormButton>
                 </div>
                 {showComments && <CommentList idea={idea}/>}
             </li>

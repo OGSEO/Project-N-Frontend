@@ -1,12 +1,12 @@
 import './IdeasPage.css'
 import {useContext, useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
-import {Link} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import IdeaItem from "../ideaItem/IdeaItem.jsx";
 import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
 import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
 import NoIdeasYet from "../../components/noIdeasYet/NoIdeasYet.jsx";
+import ResultBox from "../../components/ui/resultBox/ResultBox.jsx";
 
 export default function IdeasPage() {
     const [ideas, setIdeas] = useState([]);
@@ -36,9 +36,9 @@ export default function IdeasPage() {
             <TitleBox>
                 Mijn ideeen
             </TitleBox>
-            <div className='idea-page-box'>
+            <ResultBox>
                 {ideas.length > 0 ? (
-                    <ul className="idea-page-container-list">
+                    <ul>
                         {ideas.map((idea) => (
                             <IdeaItem idea={idea} key={idea.id}/>
                         ))}
@@ -49,7 +49,7 @@ export default function IdeasPage() {
                         Je hebt nog geen idee geplaatst!
                     </NoIdeasYet>
                 )}
-            </div>
+            </ResultBox>
         </ContainerBox>
     )
 }

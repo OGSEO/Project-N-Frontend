@@ -8,23 +8,22 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import SteunBox from "../../components/steunBox/SteunBox.jsx";
 import ApiService from "../../service/ApiService.js";
-import {generateDate} from "../../helpers/generateDate.js";
+import FeedItemContent from "../feedItemContent/FeedItemContent.jsx";
+import FeedItemMeta from "../feedItemMeta/FeedItemMeta.jsx";
 
 export default function FeedIdeaItem({idea}) {
     const [showComments, setShowComments] = useState(false);
-    const [ideaLikedArray, setIdeaLikedArray] = useState(idea.userLikes);
+    const [comments, setComments] = useState([]);
     const [ideaSupportedArray, setIdeaSupportedArray] = useState(idea.politicalSupports)
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
-    // console.log(user);
     const isPolitician = (user.role === "POLITICIAN");
 
-    /////////////////////////////////////////////////
 
-    const [comments, setComments] = useState([]);
-    // const [ideaId, setIdeaId] = useState(0);
+    const [ideaLikes, setIdeaLikes] = useState(idea.userLikes);
+    const numLikes = ideaLikes.length;
 
-    // console.log(idea);
+
 
     useEffect(() => {
 
@@ -46,40 +45,19 @@ export default function FeedIdeaItem({idea}) {
 
     }, [idea.id]);
 
-
-
-    ////////////////////////////////////////////////////////////
-
-    // console.log(idea)
-
     function commentHandler() {
         navigate(`/user/feed/${idea.id}`);
     }
 
     return (
             <article className="idea-feed-item">
-                <div className="idea-feed-item-info-box">
-                    <div>
-                        <span className="username">{idea.user}</span>
-                    </div>
-                    <div>
-                        <span className="create-date">Gepost op: {generateDate(idea)}</span>
-                    </div>
-                </div>
+                <FeedItemMeta idea={idea} />
+                <FeedItemContent idea={idea} />
 
-                <div className="idea-feed-item-body">
-                    <div>
-                        <span className="title">{idea.title}</span>
-                    </div>
-                    <div>
-                        <span className="description">{idea.description}</span>
-                    </div>
-                </div>
+                {/*//////////////// Like / Comment / Box*/}
 
                 <div className="like-comment-box">
-                    {/*{console.log(ideaLikedArray)}*/}
-                    {/*{console.log(ideaSupportedArray)}*/}
-                    <div className="like-box">likes: {ideaLikedArray.length}</div>
+                    <div className="like-box">likes: {numLikes}</div>
 
                     <div className="comment-box">
                         {comments.length > 0 ? (
@@ -118,7 +96,7 @@ export default function FeedIdeaItem({idea}) {
                         </div>
                     ) : (
                         <div>
-                            <LikeBox liked={ideaLikedArray} setLiked={setIdeaLikedArray} idea={idea}/>
+                            <LikeBox idea={idea} ideaLikes={ideaLikes} setIdeaLikes={setIdeaLikes}/>
                         </div>
                     )}
                     <div>
