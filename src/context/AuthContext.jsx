@@ -1,10 +1,10 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import ApiService from "../service/ApiService.js";
 
-export const AuthContext = createContext({});
+const AuthContext = createContext();
 
-function AuthContextProvider({children}) {
+function AuthProvider({children}) {
     const [avatarUrl, setAvatarUrl] = useState('');
     const [isAuth, toggleIsAuth] = useState({
         isAuth: false,
@@ -30,7 +30,6 @@ function AuthContextProvider({children}) {
     }, []);
 
     function login( data ) {
-        // zet de token in de Local Storage
         console.log(data);
         localStorage.setItem("JWT_TOKEN", data.token );
         localStorage.setItem("USER_ROLE", data.role);
@@ -112,4 +111,11 @@ function AuthContextProvider({children}) {
     )
 }
 
-export default AuthContextProvider;
+function useAuth() {
+    const context = useContext(AuthContext);
+    if(context === undefined) throw new Error('AuthContext was used outside of the AuthProvider');
+    return context;
+}
+
+// export { AuthProvider, AuthContext };
+export { AuthProvider, useAuth };

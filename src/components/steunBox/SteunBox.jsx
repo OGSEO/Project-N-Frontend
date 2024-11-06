@@ -1,42 +1,19 @@
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import IdeaItemActionButton from "../ui/ideaItemActionButton/IdeaItemActionButton.jsx";
 import {BsSuitHeart, BsSuitHeartFill} from "react-icons/bs";
 import ApiService from "../../service/ApiService.js";
 
-export default function SteunBox({idea, setSupported, supported}) {
-    const [supportedIdea, setSupportedIdea] = useState(false);
-    const {user} = useContext(AuthContext);
+export default function SteunBox({ideaId, ideaSupports, setIdeaSupports}) {
+    const {user} = useAuth();
 
-    console.log(user);
-    // console.log(supported);
-
-    useEffect(() => {
-        let result;
-        if(supported.length > 0) {
-            // result = (supported.some(i => i.toString() === user.username));
-            result = (supported.some(i => i.toString() === user.partyName));
-            setSupportedIdea(result)
-        } else {
-            result = false;
-            setSupportedIdea(result)
-        }
-    }, []);
-
+    const alreadySupported = ideaSupports.map((i) => i.toString()).includes(user.partyName);
 
     async function supportHandler() {
-        const ideaId = idea.id;
 
         try {
             const response = await ApiService.createSupport(ideaId)
             if (response.statusCode === 200) {
-                if (response.statusMessage === 'Idea Supported Successfully') {
-                    setSupportedIdea(true);
-                    setSupported(response.idea.politicalSupports)
-                } else if (response.statusMessage === 'Idea already Support') {
-                    setSupportedIdea(false)
-                    setSupported(response.idea.politicalSupports)
-                }
+                setIdeaSupports(response.idea.politicalSupports)
             }
         } catch (error) {
         console.log(error)
@@ -44,17 +21,11 @@ export default function SteunBox({idea, setSupported, supported}) {
     }
 
     async function unSupportHandler() {
-        const ideaId = idea.id;
 
         try {
             const response = await ApiService.createUnSupport(ideaId)
             if (response.statusCode === 200) {
-                if (response.statusMessage === 'Idea unSupported Successfully')
-                    setSupportedIdea(false);
-                setSupported(response.idea.politicalSupports)
-            } else if (response.statusMessage === 'Idea already unSupported') {
-                setSupportedIdea(false)
-                setSupported(response.idea.politicalSupports)
+                setIdeaSupports(response.idea.politicalSupports)
             }
         } catch (error) {
             console.log(error)
@@ -63,10 +34,9 @@ export default function SteunBox({idea, setSupported, supported}) {
 
         return (
             <>
-                {supported.length > 0 && supportedIdea ? (
+                {alreadySupported ? (
                     <IdeaItemActionButton label="Steun" icon={<BsSuitHeartFill/>} clickEvent={unSupportHandler}
                                           className="liked"/>
-
                 ) : (
                     <IdeaItemActionButton label="Steun" icon={<BsSuitHeart/>} clickEvent={supportHandler}/>
 

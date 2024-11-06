@@ -1,10 +1,11 @@
 import './FeedIdeaCommenting.css';
 import {useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import ApiService from "../../service/ApiService.js";
 import CreateComment from "../../comments/createComment/CreateComment.jsx";
-import CommentList from "../../comments/commentList/CommentList.jsx";
-
+import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
+import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
+import ContentBox from "../../components/ui/contentBox/ContentBox.jsx";
 export default function FeedIdeaCommenting() {
 
     const [currentIdea, setCurrentIdea] = useState({
@@ -12,7 +13,6 @@ export default function FeedIdeaCommenting() {
         "description" : ""
     })
     const { ideaId } = useParams();
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchCurrentIdea() {
@@ -30,29 +30,25 @@ export default function FeedIdeaCommenting() {
         void fetchCurrentIdea();
     }, []);
 
-    // async function deleteIdeaHandler() {
-    //     const response = await ApiService.deleteIdea(currentIdea.id);
-    //     console.log(response);
-    //     if(response.statusCode === 200) {
-    //         navigate('/ideas');
-    //     }
-    //
-    // }
-
 
     console.log(currentIdea);
 
     return (
-        <div className='idea-commenting-container'>
-            <div className='idea-commenting-title'>
-                {currentIdea.title}
-            </div>
-            <div className='idea-commenting-description'>
-                {currentIdea.description}
-            </div>
-            <div className='idea-commenting-comment-box'>
-                <CreateComment />
-            </div>
-        </div>
-    )
+        <ContainerBox useCase='main'>
+            <TitleBox colorType='citizen'>
+                Maak een opmerking!
+            </TitleBox>
+            <ContentBox>
+                <div className='idea-commenting-title'>
+                    {currentIdea.title}
+                </div>
+                <div className='idea-commenting-description'>
+                    {currentIdea.description}
+                </div>
+                <div className='idea-commenting-comment-box'>
+                    <CreateComment/>
+                </div>
+            </ContentBox>
+        </ContainerBox>
+)
 }

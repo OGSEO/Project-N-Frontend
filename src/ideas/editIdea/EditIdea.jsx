@@ -7,19 +7,24 @@ import './EditIdea.css';
 import FormLink from "../../components/ui/formLink/FormLink.jsx";
 import FormButton from "../../components/ui/formButton/FormButton.jsx";
 import {TextField} from "../../components/textField/TextField.jsx";
+import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
+import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
+import ContentBox from "../../components/ui/contentBox/ContentBox.jsx";
 
 export default function EditIdea() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const { ideaId} = useParams();
+    const {ideaId} = useParams();
     const [currentIdea, setCurrentIdea] = useState({
-        "title" : "",
-        "description" : ""
+        "title": "",
+        "description": ""
     })
 
-    const {register,
+    const {
+        register,
         handleSubmit,
-        formState: {errors}} = useForm({
+        formState: {errors}
+    } = useForm({
             defaultValues: {
                 title: `${currentIdea.title}`,
                 description: ''
@@ -31,7 +36,7 @@ export default function EditIdea() {
     useEffect(() => {
         async function fetchCurrentIdea() {
             try {
-                const response = await ApiService.getIdeaById(ideaId)
+                const response = await ApiService.getIdeaById(ideaId);
                 // const idea = response.idea;
                 console.log(response);
                 setCurrentIdea(response.idea);
@@ -39,6 +44,7 @@ export default function EditIdea() {
                 console.error(e)
             }
         }
+
         void fetchCurrentIdea();
     }, [ideaId]);
 
@@ -51,10 +57,10 @@ export default function EditIdea() {
         try {
             const response = await ApiService.updateIdea(ideaId, data)
             console.log(response);
-            if(response.statusCode === 200) {
+            if (response.statusCode === 200) {
                 navigate('/ideas');
             }
-        }catch (error) {
+        } catch (error) {
             console.error("Error submitting idea", error);
         } finally {
             setIsLoading(false);
@@ -63,36 +69,40 @@ export default function EditIdea() {
 
 
     return (
-        <div className='edit-idea-container'>
-            <h1>Edit Idea</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <TextField
-                        label="Titel"
-                        error={errors.title}
-                        {...register('title', {
-                            required: "Uw idee heeft een titel nodig!"
-                        })}
-                    />
-                    <TextField
-                        label="Beschrijving"
-                        error={errors.description}
-                        {...register('description', {
-                            required: "Uw idee heeft een beschrijving nodig!"
-                        })}
-                    />
-                </div>
-                <div className='buttons-box'>
+        <ContainerBox useCase='main'>
+            <TitleBox colorType='citizen'>
+                Edit uw idee!
+            </TitleBox>
+            <ContentBox>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <TextField
+                            label="Titel"
+                            error={errors.title}
+                            {...register('title', {
+                                required: "Uw idee heeft een titel nodig!"
+                            })}
+                        />
+                        <TextField
+                            label="Beschrijving"
+                            error={errors.description}
+                            {...register('description', {
+                                required: "Uw idee heeft een beschrijving nodig!"
+                            })}
+                        />
+                    </div>
+                    <div className='buttons-box'>
 
-                    {/*<Link to="../.." relative="path">Cancel</Link>*/}
-                    {/*<button>{isLoading ? "Submitting..." : "Edit Idea"}</button>*/}
+                        {/*<Link to="../.." relative="path">Cancel</Link>*/}
+                        {/*<button>{isLoading ? "Submitting..." : "Edit Idea"}</button>*/}
 
-                    <FormLink linkTo='..' relativeTo='root'>Cancel Edit</FormLink>
-                    <FormButton type='submit' onSubmit={onSubmit}>Edit Idee</FormButton>
+                        <FormLink linkTo='..' relativeTo='root'>Cancel Edit</FormLink>
+                        <FormButton type='submit' onSubmit={onSubmit}>Edit Idee</FormButton>
 
 
-                </div>
-            </form>
-        </div>
+                    </div>
+                </form>
+            </ContentBox>
+        </ContainerBox>
     )
 }

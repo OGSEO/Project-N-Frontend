@@ -1,9 +1,8 @@
-import './SidebarNav.css';
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.jsx";
+import styles from './SidebarNav.module.css';
+import {useEffect, useState} from "react";
+import {useAuth} from "../../context/AuthContext.jsx";
 import NavBarButton from "../ui/navBarButton/navBarButton.jsx";
 import NavBarCta from "../ui/navBarCta/NavBarCta.jsx";
-// import {Link, useNavigate} from "react-router-dom";
 import NavBarLink from "../ui/navBarLink/NavBarLink.jsx";
 import AvatarBlankImg from '../../assets/avatar-blank.png' ;
 import {Link} from "react-router-dom";
@@ -12,17 +11,13 @@ import { FaIdCard } from "react-icons/fa6";
 import { GiSmart } from "react-icons/gi";
 import { IoLogOutSharp } from "react-icons/io5";
 import ContainerBox from "../ui/containerBox/ContainerBox.jsx";
+import ContentBox from "../ui/contentBox/ContentBox.jsx";
+import AvatarBox from "../ui/avatarBox/AvatarBox.jsx";
 
 export default function SidebarNav({image}) {
-    const {logout, user} = useContext(AuthContext);
-    const [profileImage, setProfileImage] = useState('')
+    const {logout, user} = useAuth();
 
     const isPolitician = (user.role === "POLITICIAN");
-    console.log(user);
-
-    useEffect(() => {
-        setProfileImage(user.imgUrl)
-    }, [image]);
 
     function logouthandler() {
         const confirm = window.confirm("Weet u zeker dat u wilt uitloggen?");
@@ -30,68 +25,55 @@ export default function SidebarNav({image}) {
             logout();
         }
     }
-    console.log(image);
-    console.log(profileImage);
-
 
     return (
         <ContainerBox useCase='sidebar'>
-            {profileImage ? (
-                <div className="sidebar-avatar">
-                    <div>
-                        <img src={profileImage} alt={`Een profielfoto van ${user.username}`}/>
-                    </div>
-                </div>
-            ) : (
-                <div className="sidebar-avatar">
-                    <Link to={`/user/${user.id}/avatar`}>
-                        <img src={AvatarBlankImg} alt="Een placeholder van de profielfoto"/>
-                    </Link>
-                </div>
-            )}
+            <AvatarBox image={image} />
+            <ContentBox>
 
-            <div className="sidebar-username-box">
+            <div className={styles.sidebarUsernameBox}>
                 {isPolitician ? (
                         user.partyName != null ? (
                             <>
-                                <div className="sidebar-username">
+                                <div className={styles.sidebarUsername}>
                                     {user?.partyName}
                                 </div>
-                                <div className="sidebar-username-small">
+                                <div className={styles.sidebarUsernameSmall}>
                                     ( {user?.username} )
                                 </div>
                             </>
                         ) : (
-                            <div className="sidebar-username">
+                            <div className={styles.sidebarUsername}>
                                 {user?.username}
                             </div>
                         )
                 ) : (
-                    <div className="sidebar-username">
+                    <div className={styles.sidebarUsername}>
                         {user?.username}
                     </div>
                 )}
             </div>
 
             {isPolitician && !user.hasParty && (
-                <div className="sidebar-cta-box">
+                <div className={styles.sidebarCtaBox}>
                     <NavBarCta label="Aanmelden Politieke Partij" linkTo="/user/new-political-party"/>
                 </div>
             )}
             {!isPolitician && (
-                <div className="sidebar-cta-box">
+                <div className={styles.sidebarCtaBox}>
                     <NavBarCta label="Ik heb een idee" linkTo="/user/ideas/new-idea"/>
                 </div>
             )}
 
-            <div className="sidebar-nav-menu">
+            <div className={styles.sidebarNavMenu}>
                 <NavBarLink label="Alle Ideeen" linkTo="/user/feed" icon={<FaHome/>} />
-                <NavBarLink label="Mijn Account" linkTo="/user" icon={<FaIdCard />} />
+                <NavBarLink label="Mijn Account" linkTo="/user" icon={<FaIdCard />}/>
                 {!isPolitician && (
                     <NavBarLink label="Mijn Ideeen" linkTo="/user/ideas" icon={<GiSmart />} />
                 )}
                 <NavBarButton label="Uitloggen" type={'button'} onClick={logouthandler} icon={<IoLogOutSharp />}/>
             </div>
+            </ContentBox>
         </ContainerBox>
     )
 }

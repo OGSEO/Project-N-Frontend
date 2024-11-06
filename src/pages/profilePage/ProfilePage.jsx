@@ -1,8 +1,8 @@
 import ApiService from "../../service/ApiService.js";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import './ProfilePage.css'
-import {AuthContext} from "../../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
 import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
 
@@ -11,7 +11,7 @@ export default function ProfilePage() {
     const [userInfo, setUserInfo] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
+    const {user} = useAuth();
 
     const fetchUserInfo = async () => {
 

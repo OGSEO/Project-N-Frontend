@@ -17,7 +17,6 @@ export default function LandingPageBox({children, boxType, title, subTitle, regi
         loginTo = "/login/POLITICIAN"
     }
 
-
     return (
         <div className={'landing-page-box'}>
             <span className='box-title'>{title}</span>
@@ -25,7 +24,7 @@ export default function LandingPageBox({children, boxType, title, subTitle, regi
             {children}
             <Link className={`box-cta ${classesCta}`} to={registerLink}>{registerTitle}</Link>
             <p>-of-</p>
-            <Link className={classesLogin} to={loginTo}>Heb je al een account?</Link>
+            <Link className={classesLogin} to={loginTo}>Heeft u al een account?</Link>
         </div>
     )
 }

@@ -27,6 +27,7 @@
     background-color: transparent;
     border: none;
     color: var(--citizen);
+    cursor: pointer;
 }
 
 .no-comments-title {

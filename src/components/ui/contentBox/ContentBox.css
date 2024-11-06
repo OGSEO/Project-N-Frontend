@@ -1,0 +1,11 @@
+.content-box {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.contentBoxWithPadAndBg {
+    background-color: var(--white);
+    padding: 16px;
+}

@@ -1,5 +1,5 @@
 .create-idea-intro {
-    padding: 12px 24px;
+    /*padding: 12px 24px;*/
     font-size: 18px;
     font-weight: 500;
     line-height: 22px;
@@ -8,17 +8,14 @@
 .create-idea-form {
     display: flex;
     flex-direction: column;
-    padding: 12px 24px;
+    /*padding: 12px 24px;*/
+    padding-top: 32px;
 }
 
 .create-idea-form p {
     font-size:22px;
     padding-bottom: 24px;
 }
-
-/*.create-idea-container form {*/
-/*    width: calc(100% - 4px);*/
-/*}*/
 
 .buttons-box {
     display: flex;

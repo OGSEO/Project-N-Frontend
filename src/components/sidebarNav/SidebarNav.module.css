@@ -1,0 +1,46 @@
+/*.sidebarAvatar {*/
+/*    background-color: var(--citizen);*/
+/*    border-radius: 8px 8px 0 0;*/
+/*    text-align: center;*/
+/*    padding: 32px 0;*/
+/*}*/
+
+/*.sidebarAvatar img {*/
+/*    border: 4px solid var(--white);*/
+/*    border-radius: 100%;*/
+/*    height: 100px;*/
+/*    width:100px;*/
+/*}*/
+
+.sidebarUsernameBox {
+    padding: 12px 0;
+}
+
+.sidebarUsername {
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+}
+
+.sidebarUsernameSmall {
+    margin-top:8px;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+
+.sidebarCtaBox {
+    padding: 24px 0;
+    border-top: 1px solid var(--border-box);
+    border-bottom: 1px solid var(--border-box);
+}
+
+.sidebarNavMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebarNavMenu :global(.active) {
+    background-color: orange;
+}

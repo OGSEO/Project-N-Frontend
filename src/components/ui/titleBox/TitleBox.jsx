@@ -1,9 +1,8 @@
 import './TitleBox.css';
-import {useContext} from "react";
-import {AuthContext} from "../../../context/AuthContext.jsx";
+import {useAuth} from "../../../context/AuthContext.jsx";
 
 export default function TitleBox({children}) {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const userRole = user.role;
 
     return (

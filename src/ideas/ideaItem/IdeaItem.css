@@ -33,15 +33,6 @@
     padding: 16px 0 24px 0;
 }
 
-/*.idea-item-actions-box {*/
-/*    display: flex;*/
-/*    justify-content: flex-end;*/
-/*    gap:16px;*/
-/*    align-items: center;*/
-/*    padding: 12px 0;*/
-/*    border-bottom: 1px solid #e8e8e8;*/
-/*}*/
-
 .idea-item-buttons-box {
     display: flex;
     justify-content: flex-end;

@@ -1,113 +1,38 @@
 import './FeedIdeaItem.css';
-import LikeBox from "../../components/likeBox/LikeBox.jsx";
-import IdeaItemActionButton from "../../components/ui/ideaItemActionButton/IdeaItemActionButton.jsx";
-import {useNavigate} from "react-router-dom";
-import {BsChatRightText} from "react-icons/bs";
-import CommentList from "../../comments/commentList/CommentList.jsx";
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.jsx";
-import SteunBox from "../../components/steunBox/SteunBox.jsx";
+import {useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
 import FeedItemContent from "../feedItemContent/FeedItemContent.jsx";
 import FeedItemMeta from "../feedItemMeta/FeedItemMeta.jsx";
+import IdeaActionBox from "../../components/ideaActionBox/IdeaActionBox.jsx";
 
 export default function FeedIdeaItem({idea}) {
-    const [showComments, setShowComments] = useState(false);
     const [comments, setComments] = useState([]);
-    const [ideaSupportedArray, setIdeaSupportedArray] = useState(idea.politicalSupports)
-    const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
-    const isPolitician = (user.role === "POLITICIAN");
 
-
-    const [ideaLikes, setIdeaLikes] = useState(idea.userLikes);
-    const numLikes = ideaLikes.length;
-
-
+    const ideaId = idea.id;
 
     useEffect(() => {
-
-        // setIdeaId(idea.id)
-
         async function fetchComments() {
             try {
-                const response = await ApiService.getAllComments(idea.id);
-                // console.log(response);
+                const response = await ApiService.getAllComments(ideaId);
                 const newCommentList = response.commentList;
                 setComments(newCommentList);
-                // console.log(newCommentList)
             } catch (e) {
                 console.error(e)
             }
         }
 
         void fetchComments();
-
-    }, [idea.id]);
-
-    function commentHandler() {
-        navigate(`/user/feed/${idea.id}`);
-    }
+    }, [ideaId]);
 
     return (
-            <article className="idea-feed-item">
-                <FeedItemMeta idea={idea} />
-                <FeedItemContent idea={idea} />
-
-                {/*//////////////// Like / Comment / Box*/}
-
-                <div className="like-comment-box">
-                    <div className="like-box">likes: {numLikes}</div>
-
-                    <div className="comment-box">
-                        {comments.length > 0 ? (
-                            <button className="comment-box-button" onClick={() =>
-                                setShowComments(!showComments)}>
-                                {showComments ? (
-                                    <span>Verberg {comments.length} opmerkingen</span>
-                                ) : (
-                                   <span>Laat {comments.length} opmerkingen</span>
-                                )}
-                            </button>
-                        ) :(
-                            <span className='no-comments-title'>0 opmerkingen</span>
-                        )}
-
-                    </div>
-                </div>
-
-                <div className='support-box'>
-                    <ul>
-                        {
-                            ideaSupportedArray.map((supporter) => (
-                                <li key={supporter}>
-                                    {supporter}
-                                </li>
-                            ))
-
-                        } </ul>
-                </div>
-
-
-                <div className='cta-box'>
-                    {isPolitician ? (
-                        <div>
-                            <SteunBox supported={ideaSupportedArray} setSupported={setIdeaSupportedArray} idea={idea}/>
-                        </div>
-                    ) : (
-                        <div>
-                            <LikeBox idea={idea} ideaLikes={ideaLikes} setIdeaLikes={setIdeaLikes}/>
-                        </div>
-                    )}
-                    <div>
-                        <IdeaItemActionButton label="Opmerking" clickEvent={commentHandler} icon={<BsChatRightText/>}/>
-                    </div>
-                </div>
-
-                    {showComments && <CommentList comments={comments}/>}
-
-
-            </article>
+        <li className="idea-feed-item">
+            <FeedItemMeta idea={idea}/>
+            <FeedItemContent idea={idea}/>
+            <IdeaActionBox
+                idea={idea}
+                comments={comments}
+            />
+        </li>
     )
 }
 

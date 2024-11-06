@@ -4,12 +4,15 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import ApiService from "../../service/ApiService.js";
 import {useForm} from "react-hook-form";
 import {TextField} from "../../components/textField/TextField.jsx";
+import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
+import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
+import ContentBox from "../../components/ui/contentBox/ContentBox.jsx";
 
 
 export default function AddressPage() {
 
     const [address, setAddress] = useState({
-        street: 'Deveterweg',
+        street: '',
         zipCode: '',
         city: '',
         country: ''
@@ -70,46 +73,57 @@ export default function AddressPage() {
     }
 
     return (
-        <div className='address-page-container'>
-            <h2>{location.pathname === '/edit-address' ? 'Edit Address' : 'Add Address'}</h2>
-            {error && <p className="error-message">{error}</p>}
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <TextField
-                        label="Street"
-                        error={errors.street}
-                        {...register('street', {
-                            required: "This field is required."
-                        })}
-                    />
-                    <TextField
-                        label="ZipCode"
-                        error={errors.zipCode}
-                        {...register('zipCode', {
-                            required: "This field is required."
-                        })}
-                    />
-                    <TextField
-                        label="City"
-                        error={errors.city}
-                        {...register('city', {
-                            required: "This field is required."
-                        })}
-                    />
-                    <TextField
-                        label="Country"
-                        error={errors.country}
-                        {...register('country', {
-                            required: "This field is required."
-                        })}
-                    />
+        <ContainerBox useCase='main'>
+            <TitleBox colorType='citizen'>
+                {location.pathname === '/edit-address' ? 'Wijzig uw adres' : 'Voeg uw adres toe'}
+            </TitleBox>
+            <ContentBox>
+                <div className='create-address-intro'>
+                    <p>Voor een betere verwerking van uw ideeen hebben we uw adres nodig. U bent hier natuurlijk helemaal
+                        vrij in om gebruik van te maken, we respecteren te aller tijden uw privacy.</p>
                 </div>
+                {error && <p className="error-message">{error}</p>}
+                <div className='create-address-form'>
+                    <p>Vul hier uw adres gegevens in..</p>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div>
+                            <TextField
+                                label="Straatnaam"
+                                error={errors.street}
+                                {...register('street', {
+                                    required: "Uw straatnaam is verplicht."
+                                })}
+                            />
+                            <TextField
+                                label="Postcode"
+                                error={errors.zipCode}
+                                {...register('zipCode', {
+                                    required: "Postcode is verplicht."
+                                })}
+                            />
+                            <TextField
+                                label="Plaatsnaam"
+                                error={errors.city}
+                                {...register('city', {
+                                    required: "Plaatsnaam is verplicht."
+                                })}
+                            />
+                            <TextField
+                                label="Land"
+                                error={errors.country}
+                                {...register('country', {
+                                    required: "Land is verplicht."
+                                })}
+                            />
+                        </div>
 
-                <div className='buttons-box'>
-                    <Link to="..">Cancel</Link>
-                    <button>{isLoading ? "Submitting..." : "Save Address"}</button>
+                        <div className='buttons-box'>
+                            <Link to="..">Cancel</Link>
+                            <button>{isLoading ? "Submitting..." : "Save Address"}</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    )
+            </ContentBox>
+        </ContainerBox>
+)
 }

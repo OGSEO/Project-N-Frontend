@@ -3,15 +3,15 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {TextField} from "../../components/textField/TextField.jsx";
 import ApiService from "../../service/ApiService.js";
 import {useForm} from "react-hook-form";
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.jsx";
+import {useState} from "react";
+import {useAuth} from "../../context/AuthContext.jsx";
 
 // import axios from "axios";
 
 function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, toggleError] = useState();
-    const {login} = useContext(AuthContext);
+    const {login} = useAuth();
     const params = useParams();
     const navigate = useNavigate();
 

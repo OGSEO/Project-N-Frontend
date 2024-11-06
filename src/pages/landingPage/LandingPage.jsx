@@ -9,15 +9,15 @@ export default function LandingPage() {
                 <LandingPageBox
                     title='Burgers'
                     boxType='citizen'
-                    subTitle='Deel jouw ideeen met burgers uit de stad'
-                    registerTitle='Meld je aan als burger'
+                    subTitle='Deel uw ideeen met burgers uit de stad'
+                    registerTitle='Meld u aan als burger'
                     registerLink='register/CITIZEN'
                 >
                 </LandingPageBox>
                 <LandingPageBox
                     title='Politici'
                     boxType='politician'
-                    subTitle='Steun ideeen waar jouw partij iets in ziet'
+                    subTitle='Steun ideeen waar uw partij iets in ziet'
                     registerTitle='Direct aanmelden'
                     registerLink='register/POLITICIAN'
                 >

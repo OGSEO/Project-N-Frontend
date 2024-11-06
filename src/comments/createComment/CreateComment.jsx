@@ -2,7 +2,6 @@ import './CreateComment.css';
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-// import {useAuth} from "../../context/AuthContext.jsx";
 import ApiService from "../../service/ApiService.js";
 import {TextField} from "../../components/textField/TextField.jsx";
 import FormLink from "../../components/ui/formLink/FormLink.jsx";
@@ -11,7 +10,6 @@ import FormButton from "../../components/ui/formButton/FormButton.jsx";
 export default function CreateComment() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    // const auth = useAuth();
     const {ideaId} = useParams();
     const {register, handleSubmit,
         formState: {errors}} = useForm({
@@ -41,13 +39,6 @@ export default function CreateComment() {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='comment-section'>
-                {/*<div>*/}
-                {/*    <input*/}
-                {/*        type="text"*/}
-                {/*        id="content"*/}
-                {/*        {...register('content')}*/}
-                {/*    />*/}
-                {/*</div>*/}
                 <TextField
                     label="Opmerking"
                     error={errors.content}
@@ -57,8 +48,8 @@ export default function CreateComment() {
                 />
                 {/*<button>{isLoading ? "Submitting..." : "Opmerking plaatsen"}</button>*/}
                 <div className='create-comment-buttons-box'>
-                    <FormLink linkTo='..' relativeTo='path'>Cancel Idee</FormLink>
-                    <FormButton type='submit' onSubmit={onSubmit}>Deel Idee</FormButton>
+                    <FormLink linkTo='..' relativeTo='path'>Cancel</FormLink>
+                    <FormButton type='submit' onSubmit={onSubmit}>Plaats opmerking</FormButton>
                 </div>
             </div>
         </form>

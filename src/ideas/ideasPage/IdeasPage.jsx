@@ -1,16 +1,17 @@
 import './IdeasPage.css'
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import ApiService from "../../service/ApiService.js";
-import {AuthContext} from "../../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import IdeaItem from "../ideaItem/IdeaItem.jsx";
 import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
 import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
 import NoIdeasYet from "../../components/noIdeasYet/NoIdeasYet.jsx";
-import ResultBox from "../../components/ui/resultBox/ResultBox.jsx";
+import ContentBox from "../../components/ui/contentBox/ContentBox.jsx";
 
 export default function IdeasPage() {
     const [ideas, setIdeas] = useState([]);
-    const {user} = useContext(AuthContext);
+    const [ideaDeleted, setIdeaDeleted] = useState(false);
+    const {user} = useAuth();
 
     useEffect(() => {
         async function fetchIdeas() {
@@ -19,13 +20,14 @@ export default function IdeasPage() {
                 const ideaList = response.ideaList;
                 console.log(response);
                 setIdeas(ideaList);
+                setIdeaDeleted(false);
             } catch (e) {
                 console.error(e)
             }
         }
 
         void fetchIdeas();
-    }, [user.id]);
+    }, [ideaDeleted]);
 
     if (!ideas) {
         return <div className="idea-page-container-list"><span className="load-message">Ideeen aan het laden...</span></div>
@@ -36,11 +38,11 @@ export default function IdeasPage() {
             <TitleBox>
                 Mijn ideeen
             </TitleBox>
-            <ResultBox>
+            <ContentBox paddingAndBg={false}>
                 {ideas.length > 0 ? (
                     <ul>
                         {ideas.map((idea) => (
-                            <IdeaItem idea={idea} key={idea.id}/>
+                            <IdeaItem idea={idea} setIdeaDeleted={setIdeaDeleted} key={idea.id}/>
                         ))}
                     </ul>
                 ) : (
@@ -49,7 +51,7 @@ export default function IdeasPage() {
                         Je hebt nog geen idee geplaatst!
                     </NoIdeasYet>
                 )}
-            </ResultBox>
+            </ContentBox>
         </ContainerBox>
     )
 }

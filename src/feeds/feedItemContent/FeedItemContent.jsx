@@ -2,7 +2,7 @@ import './FeedItemContent.css';
 
 export default function FeedItemContent({idea}) {
     return (
-        <div className="content-box">
+        <div className="feed-item-content-box">
             <div>
                 <span className="title">{idea.title}</span>
             </div>

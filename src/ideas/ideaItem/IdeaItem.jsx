@@ -6,7 +6,7 @@ import CommentList from "../../comments/commentList/CommentList.jsx";
 import FormButton from "../../components/ui/formButton/FormButton.jsx";
 import {generateDate} from "../../helpers/generateDate.js";
 
-export default function IdeaItem({idea}) {
+export default function IdeaItem({idea, setIdeaDeleted}) {
     const navigate = useNavigate();
     const [showComments, setShowComments] = useState(false);
 
@@ -20,6 +20,7 @@ export default function IdeaItem({idea}) {
         console.log(response);
         if (response.statusCode === 200) {
             navigate("/user/ideas");
+            setIdeaDeleted(true);
         }
     }
 
@@ -48,7 +49,7 @@ export default function IdeaItem({idea}) {
 
                 <div className='idea-item-buttons-box'>
                     <FormButton handler={editIdeaHandler}>Edit</FormButton>
-                    <FormButton onSubmit={deleteIdeaHandler} btnColor='delete'>Delete</FormButton>
+                    <FormButton handler={deleteIdeaHandler} btnColor='delete'>Delete</FormButton>
                 </div>
                 {showComments && <CommentList idea={idea}/>}
             </li>

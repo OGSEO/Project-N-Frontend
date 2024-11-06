@@ -8,6 +8,7 @@ import FormButton from "../../components/ui/formButton/FormButton.jsx";
 import FormLink from "../../components/ui/formLink/FormLink.jsx";
 import ContainerBox from "../../components/ui/containerBox/ContainerBox.jsx";
 import TitleBox from "../../components/ui/titleBox/TitleBox.jsx";
+import ContentBox from "../../components/ui/contentBox/ContentBox.jsx";
 
 export default function CreateIdea() {
     const [isLoading, setIsLoading] = useState(false);
@@ -46,37 +47,39 @@ export default function CreateIdea() {
             <TitleBox colorType='citizen'>
                 Deel uw idee met de stad!
             </TitleBox>
-            <div className='create-idea-intro'>
-                <p>Heeft u een idee? En u wilt deze delen met uw medeburgers om extra draagvlak te verkrijgen?
-                    Of wilt u uw idee onder de ogen van politici krijgen? Deel snel uw idee zodat al deze dingen
-                door een druk op de knop mogelijk zijn.</p>
-            </div>
-            <div className='create-idea-form'>
-                <p>Wat is uw idee?</p>
-                <form autoComplete='false' onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <TextField
-                            label="Titel"
-                            error={errors.title}
-                            {...register('title', {
-                                required: "Uw idee heeft een titel nodig!"
-                            })}
-                        />
-                        <TextField
-                            label="Beschrijving"
-                            error={errors.description}
-                            {...register('description', {
-                                required: "Uw idee heeft een beschrijving nodig!"
-                            })}
-                        />
-                    </div>
+            <ContentBox>
+                <div className='create-idea-intro'>
+                    <p>Heeft u een idee? En u wilt deze delen met uw medeburgers om extra draagvlak te verkrijgen?
+                        Of wilt u uw idee onder de ogen van politici krijgen? Deel snel uw idee zodat al deze dingen
+                        door een druk op de knop mogelijk zijn.</p>
+                </div>
+                <div className='create-idea-form'>
+                    <p>Vul hier uw idee in..</p>
+                    <form autoComplete='false' onSubmit={handleSubmit(onSubmit)}>
+                        <div>
+                            <TextField
+                                label="Titel"
+                                error={errors.title}
+                                {...register('title', {
+                                    required: "Uw idee heeft een titel nodig!"
+                                })}
+                            />
+                            <TextField
+                                label="Beschrijving"
+                                error={errors.description}
+                                {...register('description', {
+                                    required: "Uw idee heeft een beschrijving nodig!"
+                                })}
+                            />
+                        </div>
 
-                    <div className='buttons-box'>
-                        <FormLink linkTo='..' relativeTo='path'>Cancel Idee</FormLink>
-                        <FormButton type='submit' onSubmit={onSubmit}>Deel Idee</FormButton>
-                    </div>
-                </form>
-            </div>
+                        <div className='buttons-box'>
+                            <FormLink linkTo='..' relativeTo='path'>Cancel Idee</FormLink>
+                            <FormButton type='submit' onSubmit={onSubmit}>Deel Idee</FormButton>
+                        </div>
+                    </form>
+                </div>
+            </ContentBox>
         </ContainerBox>
     )
 

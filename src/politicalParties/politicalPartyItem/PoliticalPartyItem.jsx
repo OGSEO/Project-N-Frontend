@@ -1,11 +1,10 @@
 import './politicalPartyItem.css';
-import {useContext} from "react";
-import {AuthContext} from "../../context/AuthContext.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
 
 export default function PoliticalPartyItem({politicalParty}) {
     console.log(politicalParty);
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
     const userId = user.id;
     console.log(userId);
 
